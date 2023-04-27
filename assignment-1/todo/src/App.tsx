@@ -1,5 +1,5 @@
 import { Component, For } from 'solid-js';
-import { tasks } from "./tasks.js";
+import { tasks } from './tasks.js';
 import Layout from './components/Layout/Layout';
 import Todo from './components/Todo/Todo';
 import { CloseButton, Collapse } from 'solid-bootstrap';
