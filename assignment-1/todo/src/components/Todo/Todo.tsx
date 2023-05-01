@@ -11,7 +11,7 @@ const Todo: Component<TodoProps> = ({ content }) => {
         <TodoContainer>
             <Form.Check type={"checkbox"} label={content}/>
             <Buttons>
-                <Button>Edit</Button>
+                <Button href='/edit'>Edit</Button>
                 <Button>Delete</Button>
             </Buttons>
         </TodoContainer>
