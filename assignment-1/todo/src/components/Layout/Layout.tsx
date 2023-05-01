@@ -1,8 +1,9 @@
 import { createEffect, createSignal } from "solid-js";
 import { Show } from "solid-js/web";
-import { Container, Header, Content } from "./Layout.styles";
+import { Container, Header, Content, Brand } from "./Layout.styles";
 import { JSX } from "solid-js";
 import {A} from '@solidjs/router'
+import { Nav, Navbar } from "solid-bootstrap";
 
 
 interface LayoutProps {
@@ -11,23 +12,20 @@ interface LayoutProps {
 }
 
 const Layout = (props: LayoutProps) => {
-  const [showHeader, setShowHeader] = createSignal(!!props.headerContent);
-
-  createEffect(() => {
-    setShowHeader(!!props.headerContent);
-  });
-
   return (
     <Container>
-      <Show when={showHeader()}>
-        <Header>
-          {props.headerContent}
-          <A href='/'>Home</A>
-          <A href='/new'>New TODO</A> 
-          <A href='/about'>Impressum</A> 
-          <A href='/edit'>Edit TODO</A> 
-        </Header>
-      </Show>
+      <Navbar bg="dark" variant="dark">
+        <Brand>
+          <Navbar.Brand href="/">Best todo app</Navbar.Brand>
+        </Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav class="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/about">Impressum</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
       <Content>{props.children}</Content>
     </Container>
   );

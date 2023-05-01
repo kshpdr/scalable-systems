@@ -1,4 +1,4 @@
-import { Button, Form } from "solid-bootstrap";
+import { Button, CloseButton, Form } from "solid-bootstrap";
 import { Component } from "solid-js";
 import { Buttons, TodoContainer } from "./Todo.styles";
 
@@ -12,7 +12,7 @@ const Todo: Component<TodoProps> = ({ content }) => {
             <Form.Check type={"checkbox"} label={content}/>
             <Buttons>
                 <Button href='/edit'>Edit</Button>
-                <Button>Delete</Button>
+                <CloseButton />
             </Buttons>
         </TodoContainer>
     )
