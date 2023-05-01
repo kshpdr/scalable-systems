@@ -22,3 +22,7 @@ export const Content = styled("main")`
   flex-direction: column;
   padding: 2rem;
 `;
+
+export const Brand = styled("div")`
+  padding-left: 35px;
+`;
