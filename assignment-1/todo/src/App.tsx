@@ -1,14 +1,14 @@
 import { Component } from "solid-js";
-import { Router, Routes, Route } from "@solidjs/router";
-import Layout from "./components/Layout/Layout";
+import { Routes, Route } from "@solidjs/router";
 import About from "./pages/About";
-import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Homepage from "./pages/Homepage";
+import Layout from "./components/Layout/Layout";
+import New from "./pages/New";
 
 const App: Component<{}> = () => {
   return (
-    <Layout headerContent="Your best TODO app">
+    <Layout>
       <Routes>
         <Route path="/" component={Homepage} />
         <Route path="/new" component={New} />
