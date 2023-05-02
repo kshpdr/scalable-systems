@@ -4,6 +4,7 @@ export const TodoContainer = styled("div")`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 5px;
     background-color: #f8f9fa;
     border-radius: 5px;
     padding: 10px;
@@ -17,3 +18,4 @@ export const Buttons = styled("div")`
     justify-content: center;
     align-items: center;
 `;
+

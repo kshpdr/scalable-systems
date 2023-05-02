@@ -1,10 +1,13 @@
+
 import { Component } from 'solid-js';
 import { Button, Form } from 'solid-bootstrap';
 import { SubmitButton } from './New.styles';
 
 
+
 const New: Component<{}> = () => {
   return (
+
     <>
       <Form>
         <Form.Group>
@@ -16,6 +19,7 @@ const New: Component<{}> = () => {
           <Button>Submit</Button>
       </SubmitButton>
     </>
+
   );
 };
 
