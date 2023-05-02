@@ -1,13 +1,9 @@
-import { createEffect, createSignal } from "solid-js";
-import { Show } from "solid-js/web";
-import { Container, Header, Content, Brand } from "./Layout.styles";
+import { Container, Content, Brand } from "./Layout.styles";
 import { JSX } from "solid-js";
-import {A} from '@solidjs/router'
 import { Nav, Navbar } from "solid-bootstrap";
 
 
 interface LayoutProps {
-  headerContent?: JSX.Element;
   children: JSX.Element;
 }
 
