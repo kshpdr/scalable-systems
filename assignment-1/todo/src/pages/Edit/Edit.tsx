@@ -10,6 +10,10 @@ const Edit: Component<{}> = () => {
                     <Form.Label>Edit your TODO </Form.Label>
                     <Form.Control type='text'/>
                 </Form.Group>
+                <Form.Group>
+                    <Form.Label>Due to: </Form.Label>
+                    <Form.Control type='date'/>
+                </Form.Group>
             </Form>
         </>
     )
