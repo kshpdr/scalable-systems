@@ -1,6 +1,6 @@
 import { Component, For } from 'solid-js';
 
-import { Form } from 'solid-bootstrap';
+import { Form, Button } from 'solid-bootstrap';
 
 
 const New: Component<{}> = () => {
@@ -10,6 +10,7 @@ const New: Component<{}> = () => {
           <Form.Label>Your new TODO</Form.Label>
           <Form.Control type='text'/>
       </Form.Group>
+      <Button type="submit">Submit</Button>
     </Form>
   );
 };
