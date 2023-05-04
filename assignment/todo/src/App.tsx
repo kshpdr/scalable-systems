@@ -5,8 +5,10 @@ import Edit from "./pages/Edit";
 import Homepage from "./pages/Homepage";
 import Layout from "./components/Layout/Layout";
 import New from "./pages/New";
+import { resultList } from "./api/todos"
 
 const App: Component<{}> = () => {
+  console.log(resultList)
   return (
     <Layout>
       <Routes>
