@@ -3,11 +3,12 @@ import Todo from '../../components/Todo/Todo.jsx';
 import {tasks} from '../../tasks.js'
 import { Button } from 'solid-bootstrap';
 import { AddButton } from './Homepage.styles.jsx';
+import { resultList } from "../../api/todos";
 
 const Homepage: Component<{}> = () => {
     return (
         <>
-            <For each={tasks}>{(task) => 
+            <For each={resultList}>{(task) => 
                 <Todo content={task} />
             }
             </For>

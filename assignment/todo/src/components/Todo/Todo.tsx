@@ -3,15 +3,16 @@ import { Component } from "solid-js";
 import { Buttons, TodoContainer } from "./Todo.styles";
 
 interface TodoProps {
-    content: string;
+    content: [];
   }
 
 const Todo: Component<TodoProps> = ({ content }) => {
     return (
         <TodoContainer>
-            <Form.Check type={"checkbox"} label={content[0]}/>
-            <ProgressBar now={10} label={`${10}%`} style={{ width: "350px" }} />
-            <Badge pill bg="primary">{content[1]}</Badge>
+            <Form.Check type={"checkbox"} checked={content.done}/>
+            {content.task}
+            <ProgressBar now={10} label={`${content.progress}%`} style={{ width: "350px" }} />
+            <Badge pill bg="primary">{content.deadline}</Badge>
             <Buttons>
                 <Button href='/edit'>Edit</Button>
                 <CloseButton />
