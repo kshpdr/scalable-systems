@@ -3,7 +3,7 @@ import { Component } from "solid-js";
 import { Buttons, TodoContainer } from "./Todo.styles";
 
 interface TodoProps {
-    content: [];
+    content: void;
   }
 
 const Todo: Component<TodoProps> = ({ content }) => {
@@ -14,7 +14,7 @@ const Todo: Component<TodoProps> = ({ content }) => {
             <ProgressBar now={10} label={`${content.progress}%`} style={{ width: "350px" }} />
             <Badge pill bg="primary">{content.deadline}</Badge>
             <Buttons>
-                <Button href='/edit'>Edit</Button>
+                <Button href={`/edit/${content.id}`}>Edit</Button>
                 <CloseButton />
             </Buttons>
         </TodoContainer>
