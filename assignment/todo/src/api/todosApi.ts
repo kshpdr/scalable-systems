@@ -8,6 +8,10 @@ export const createTodo = async (data: { task: string, deadline: string }) => {
   return record;
 }
 
+export const getAllTodos = async () => {
+  return pocketbase.collection('todos').getFullList();
+}
+
 export const disconnect = () => {
   pocketbase.disconnect();
 }

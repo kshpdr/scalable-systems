@@ -1,14 +1,16 @@
-import {Component, For} from 'solid-js'
+import {Component, For, createResource} from 'solid-js'
 import Todo from '../../components/Todo/Todo.jsx';
 import {tasks} from '../../tasks.js'
 import { Button } from 'solid-bootstrap';
 import { AddButton } from './Homepage.styles.jsx';
-import { resultList } from "../../api/todos";
+import { getAllTodos } from '../../api/todosApi';
 
 const Homepage: Component<{}> = () => {
+    const [todos] = createResource(getAllTodos);
+
     return (
         <>
-            <For each={resultList}>{(task) => 
+            <For each={todos()}>{(task) =>
                 <Todo content={task} />
             }
             </For>
