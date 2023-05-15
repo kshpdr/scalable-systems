@@ -12,6 +12,10 @@ export const getAllTodos = async () => {
   return pocketbase.collection('todos').getFullList();
 }
 
+export const deleteTodo = async (todoId: string) => {
+  await pocketbase.collection('todos').delete(todoId);
+}
+
 export const disconnect = () => {
   pocketbase.disconnect();
 }

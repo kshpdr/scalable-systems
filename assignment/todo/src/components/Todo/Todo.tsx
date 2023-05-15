@@ -1,5 +1,5 @@
 import { Button, CloseButton, Form, ProgressBar, Badge } from "solid-bootstrap";
-import { Component } from "solid-js";
+import { Component, createSignal } from "solid-js";
 import { Buttons, TodoContainer } from "./Todo.styles";
 
 interface TodoProps {
@@ -8,9 +8,11 @@ interface TodoProps {
     done: boolean;
     progress: number;
     deadline: string;
-  }
+    onDelete: (id: string) => void;
+}
 
-const Todo: Component<TodoProps> = ({ id, task, done, progress, deadline }) => {
+const Todo: Component<TodoProps> = ({ id, task, done, progress, deadline, onDelete}) => {
+
     return (
         <TodoContainer>
             <Form.Check type={"checkbox"} checked={done}/>
@@ -19,7 +21,7 @@ const Todo: Component<TodoProps> = ({ id, task, done, progress, deadline }) => {
             <Badge pill bg="primary">{deadline}</Badge>
             <Buttons>
                 <Button href={`/edit/${id}`}>Edit</Button>
-                <CloseButton />
+                <CloseButton onClick={() => onDelete(id)} />
             </Buttons>
         </TodoContainer>
     )

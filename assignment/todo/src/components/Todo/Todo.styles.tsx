@@ -1,4 +1,4 @@
-import { styled } from "solid-styled-components";
+import { styled, keyframes } from "solid-styled-components";
 
 export const TodoContainer = styled("div")`
     display: flex;
@@ -19,3 +19,13 @@ export const Buttons = styled("div")`
     align-items: center;
 `;
 
+export const deletion = keyframes`
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+`
