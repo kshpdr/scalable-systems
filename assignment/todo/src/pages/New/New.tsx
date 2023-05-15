@@ -1,14 +1,16 @@
 import { Component, createSignal } from 'solid-js';
 import { Button, Form } from 'solid-bootstrap';
 import { SubmitButton } from './New.styles';
-import { createTodo } from '../../api/todosApi.ts';
+import { createTodo } from '../../api/todosApi';
+import { useNavigate } from "@solidjs/router";
 
 const New: Component<{}> = () => {
+  const navigate = useNavigate();
   const [task, setTask] = createSignal<string>("");
   const [dueDate, setDueDate] = createSignal<string>("");
 
   const handleSubmit = async (e: Event) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const data = {
       task: task(),
@@ -17,6 +19,7 @@ const New: Component<{}> = () => {
 
     const record = await createTodo(data);
     console.log('Record created:', record);
+    navigate("/");
   };
 
   return (
