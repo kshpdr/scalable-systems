@@ -10,8 +10,8 @@ const Homepage: Component<{}> = () => {
 
     return (
         <>
-            <For each={todos()}>{(task) =>
-                <Todo content={task} />
+            <For each={todos()}>{(todo) =>
+                <Todo {...todo} />
             }
             </For>
             <AddButton>
