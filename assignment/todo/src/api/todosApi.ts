@@ -1,10 +1,8 @@
 import pocketbase from "../utils/pocketbase"
 
 export const createTodo = async (data: { task: string, deadline: string }) => {
-  data.done = false;
-  data.progress = 0;
-
-  const record = await pocketbase.collection('todos').create(data);
+  const todo = {task: data.task, deadline: data.deadline, done: false, progress: 0}
+  const record = await pocketbase.collection('todos').create(todo);
   return record;
 }
 
@@ -20,10 +18,10 @@ export const disconnect = () => {
   pocketbase.disconnect();
 }
 
-export const singleTodo = async (rec_id: string) => {
+export const getTodo = async (rec_id: string) => {
   const a_todo = await pocketbase.collection('todos').getOne(rec_id);
   return a_todo;
-  //console.log('sosichlen')
+
 }
 
 export const editTodo = async (rec_id: string, data: {task: string, deadline: string, done: boolean, progress: number }) => {
