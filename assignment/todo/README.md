@@ -32,3 +32,11 @@ Your app is ready to be deployed!
 ## Deployment
 
 You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+
+
+## Backend
+
+To make the apps' backend work, Pockeetbase must be installed https://pocketbase.io/ <br>
+
+To start pocketbase, navigate in the installation folder and type <code>./pocketbase serve</code> in.
+
