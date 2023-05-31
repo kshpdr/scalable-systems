@@ -24,7 +24,7 @@ const Body: React.FC = () => {
 
     // function for sending data to backend 
     const sendData = () => { 
-        fetch("", { 
+        fetch("", {  // url to post to 
             method: 'POST', 
             mode: 'cors', 
             body: JSON.stringify(input) 
