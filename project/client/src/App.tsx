@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Welcome from './pages/Welcome';
+import Body from './components/Body';
 
 const App: React.FC = () => {
   const [message, setMessage] = useState('Loading...');
@@ -25,6 +26,7 @@ const App: React.FC = () => {
       <Navbar />
       <Welcome />
       <p>{message}</p>
+      <Body />
     </div>
   );
 }
