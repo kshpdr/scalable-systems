@@ -7,8 +7,7 @@ const router = express.Router();
 router.get(
     "/all",
     asyncHandler(async (req: any, res: any) => {
-        const res1 : Response = res;
-        res1.send({ message: 'WIP: a route to show all the clusters' });
+        res.send({ message: 'WIP: a route to show all the clusters' });
       /*  
       const allCluster = await ClusterModel.find({}).exec(); 
   
@@ -23,8 +22,7 @@ router.get(
   router.post(
     "/create",
     asyncHandler(async function (req: any, res: any) {
-        const res1 : Response = res;
-        res1.send({ message: 'WIP: a route to create a cluster' });
+        res.send({ message: 'WIP: a route to create a cluster' });
 
         /*
       const newtodo = new ClusterModel({
@@ -40,8 +38,7 @@ router.get(
   router.put(
     "/edit",
     asyncHandler(async function (req: any, res: any) {
-        const res1 : Response = res;
-        res1.send({ message: 'WIP: a route to edit a cluster' });
+        res.send({ message: 'WIP: a route to edit a cluster' });
         /*
       //dependent on sql syntax:  
       //const edittodo = await ClusterModel.findById(req.body.id).exec();
@@ -62,8 +59,7 @@ router.get(
   router.delete(
     "/delete",
     asyncHandler(async function (req:any, res:any) {
-        const res1 : Response = res;
-        res1.send({ message: 'WIP: a route to delete a cluster from database' });
+        res.send({ message: 'WIP: a route to delete a cluster from database' });
 
         /*
       //dependent on sql syntax:
