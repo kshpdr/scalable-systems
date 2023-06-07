@@ -42,3 +42,12 @@ To get this project running on your local machine, follow these steps:
     - In the `client` directory, run `npm run dev` to start the React development server.
 
 5. **Visit the App**: Open your web browser and visit `http://localhost:3001` to see the running server. For the frontend you are gonna see in the console which port is used and also can directly access it.
+
+6. **Setup MySQL Database**: After installing mysql server, follow these steps: 
+
+    - In terminal, type in `mysql -u root -p`
+    - `CREATE DATABASE project;`
+    - `mysql -u root -p project < mysqldump_project.sql`
+
+    Now you have imported an sql database from sqldump!
+
