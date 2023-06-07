@@ -1,12 +1,14 @@
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
-import { clusters, getclust } from './models/clusters';
+import { getclust } from './models/clusters';
 import { sequelize } from './db'
 
+const clusters = require('./models/clusters')
 const app: express.Application = express();
 
 app.use(cors());
+app.use(express.json())
 
 const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 const clientBuildPath = path.resolve(__dirname, '..', 'client');
