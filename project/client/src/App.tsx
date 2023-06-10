@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Welcome from './pages/Welcome';
+import ClusterForm from './components/ClusterForm';
+import { Layout } from './components/Layout/Layout.styles';
 
 const App: React.FC = () => {
   const [message, setMessage] = useState('Loading...');
@@ -23,8 +25,11 @@ const App: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <Welcome />
-      <p>{message}</p>
+      <Layout> 
+        <Welcome />
+        <ClusterForm onSubmit={() => console.log("Submitted")} />
+        <p>{message}</p>
+      </Layout>
     </div>
   );
 }
