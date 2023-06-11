@@ -1,10 +1,30 @@
 import express, { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-//import ClusterModel from 'model'; sobald das Datenbank modell feststeht
+import { externalApiCall2 } from './extApi';
 import { Clusters } from './models/clusters'
 import { getclust } from './models/clusters';
 
 const router = express.Router();
+
+router.get(
+  "/externalApi",
+  asyncHandler(async (req: any, res: any) => {
+    externalApiCall2('/regional/scotland')
+    .then((jsonData) => {
+      res.send(jsonData); // The JSON object from the API call
+    })
+    .catch((error) => {
+      console.error(error); // Error handling for API call
+    });
+    /*const clusters = await getclust();
+    
+    if (!Array.isArray(clusters) || !clusters.length) {
+      throw new Error("There are no Cluster");
+    } else {
+      res.send(clusters);
+    }*/
+  })
+);
 
 router.get(
     "/all",
