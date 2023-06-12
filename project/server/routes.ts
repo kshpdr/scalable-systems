@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import { externalApiCall2 } from './extApi';
+import { externalApiCall } from './usecase1/extApi';
+import { sortRegions } from './usecase1/sortRegions';
 import { Clusters } from './models/clusters'
 import { getclust } from './models/clusters';
 
@@ -9,20 +10,16 @@ const router = express.Router();
 router.get(
   "/externalApi",
   asyncHandler(async (req: any, res: any) => {
-    externalApiCall2('/regional/scotland')
+    const event = new Date();
+    event.toISOString()
+
+    externalApiCall('/regional/intensity/' + event.toISOString() + '/fw24h')
     .then((jsonData) => {
       res.send(jsonData); // The JSON object from the API call
     })
     .catch((error) => {
       console.error(error); // Error handling for API call
     });
-    /*const clusters = await getclust();
-    
-    if (!Array.isArray(clusters) || !clusters.length) {
-      throw new Error("There are no Cluster");
-    } else {
-      res.send(clusters);
-    }*/
   })
 );
 
