@@ -4,8 +4,8 @@ import cors from 'cors';
 
 import bodyParser from 'body-parser';
 import Router from './routes';
-import { getclust } from './models/clusters';
-import { sequelize } from './db'
+import { getclust } from './db/helpers';
+import { sequelize } from './db/db'
 
 const clusters = require('./models/clusters')
 const app: express.Application = express();
