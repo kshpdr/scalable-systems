@@ -1,10 +1,27 @@
 import express, { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-//import ClusterModel from 'model'; sobald das Datenbank modell feststeht
+import { externalApiCallandsort } from './usecase1/extApi';
 import { Clusters } from './models/clusters'
 import { getclust } from './models/clusters';
 
 const router = express.Router();
+
+router.get(
+  "/externalApi",
+  asyncHandler(async (req: any, res: any) => {
+    
+    const event = new Date();
+    event.toISOString()
+
+    externalApiCallandsort('/regional/intensity/' + event.toISOString() + '/fw24h')
+    .then((jsonData) => {
+      res.send(jsonData); // The JSON object from the API call
+    })
+    .catch((error) => {
+      console.error(error); // Error handling for API call
+    });
+  })
+);
 
 router.get(
     "/all",
