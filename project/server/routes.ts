@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 //import ClusterModel from 'model'; sobald das Datenbank modell feststeht
-import { Clusters } from './models/clusters'
-import { getclust, createCluster } from './db/helpers';
+import { Clusters } from './db/models/clusters'
+import { getClusters, createCluster } from './db/helpers';
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get(
     "/all",
     asyncHandler(async (req: any, res: any) => {
       res.send({ message: 'WIP: a route to show all the clusters' });
-      const clusters = await getclust();
+      const clusters = await getClusters();
       
       if (!Array.isArray(clusters) || !clusters.length) {
         throw new Error("There are no Cluster");

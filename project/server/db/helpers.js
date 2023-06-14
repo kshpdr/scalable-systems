@@ -1,7 +1,6 @@
-import { Clusters } from "../models/clusters";
-import { sequelize } from "../models";
+import { Clusters } from "./models/clusters";
 
-export async function getclust() {
+export async function getClusters() {
     return await Clusters.findAll();
 }
 

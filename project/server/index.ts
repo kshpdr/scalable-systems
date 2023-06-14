@@ -4,10 +4,10 @@ import cors from 'cors';
 
 import bodyParser from 'body-parser';
 import Router from './routes';
-import { getclust } from './db/helpers';
+import { getClusters } from './db/helpers';
 import { sequelize } from './db/db'
 
-const clusters = require('./models/clusters')
+const clusters = require('./db/models/clusters')
 const app: express.Application = express();
 
 app.use(cors());
@@ -22,10 +22,11 @@ app.use(bodyParser.json());
 
 app.use("/api", Router);
 
-
 const start = async () => {
     try {
-        await sequelize.authenticate().then(() => {console.log("siuuuu")});
+        await sequelize.authenticate().then(() => {
+            console.log("DB User authenticated")}
+        );
         await sequelize.sync();
     }
     catch (err) {
@@ -35,7 +36,17 @@ const start = async () => {
 start();
 
 app.get('/api', (req, res) => {
-    res.send({ message: `Welcome to our API! ${getclust} \n \n ${JSON.stringify(getclust, null, 2)}` });
+    res.send({ message: `Welcome to our API!` });
+});
+
+app.get('/clusters', async (req, res) => {
+    try {
+        const clusters = await getClusters();
+        console.log(clusters)
+        res.send({ message: clusters });
+    } catch (error) {
+        res.status(500).send({ error: 'Failed to fetch clusters' });
+    }
 });
 
 app.get('*', (req, res) =>{
