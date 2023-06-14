@@ -2,8 +2,17 @@ import { FC, FormEvent, useState } from 'react';
 import { Form, Input, Button } from './ClusterForm.styles';
 
 interface ClusterFormProps {
-  onSubmit: (data: any) => void;
+  onSubmit: (cluster: {
+    name: string;
+    powerHigh: string;
+    powerAverage: string;
+    powerLow: string;
+    energyConsumption: string;
+    numServers: string;
+    location: string;
+  }) => void;
 }
+
 
 const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -12,10 +21,14 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   const [powerLow, setPowerLow] = useState('');
   const [energyConsumption, setEnergyConsumption] = useState('');
   const [numServers, setNumServers] = useState('');
+  const [location, setLocation] = useState('');
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit({ name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, location });
+
+    const cluster = { name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, location };
+
+    onSubmit(cluster);
   };
 
   return (
