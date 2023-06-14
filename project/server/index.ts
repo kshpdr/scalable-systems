@@ -7,7 +7,7 @@ import Router from './routes';
 import { getClusters } from './db/helpers';
 import { sequelize } from './db/db'
 
-const clusters = require('./db/models/clusters')
+import { Clusters } from './db/models/clusters';
 const app: express.Application = express();
 
 app.use(cors());
@@ -48,6 +48,17 @@ app.get('/clusters', async (req, res) => {
         res.status(500).send({ error: 'Failed to fetch clusters' });
     }
 });
+
+app.post('/addCluster', async (req, res) => {
+    const clusterData = req.body;
+  
+    try {
+      const newCluster = await Clusters.create(clusterData);
+      res.status(201).send(newCluster);
+    } catch (error) {
+      res.status(500).send({ error: 'Failed to create new cluster' });
+    }
+  });  
 
 app.get('*', (req, res) =>{
     res.sendFile(path.join(clientBuildPath, 'index.html'));
