@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import { externalApiCallandsort } from './usecase1/extApi';
-import { Clusters } from './models/clusters'
-import { getclust } from './models/clusters';
+//import ClusterModel from 'model'; sobald das Datenbank modell feststeht
+import { Clusters } from './db/models/clusters'
+import { getClusters, createCluster } from './db/helpers';
 
 const router = express.Router();
 
@@ -27,7 +27,7 @@ router.get(
     "/all",
     asyncHandler(async (req: any, res: any) => {
       res.send({ message: 'WIP: a route to show all the clusters' });
-      const clusters = await getclust();
+      const clusters = await getClusters();
       
       if (!Array.isArray(clusters) || !clusters.length) {
         throw new Error("There are no Cluster");
@@ -40,16 +40,23 @@ router.get(
   router.post(
     "/create",
     asyncHandler(async function (req: any, res: any) {
-        res.send({ message: 'WIP: a route to create a cluster' });
+      res.send({ message: 'WIP: a route to create a cluster' });
 
-        /*
-      const newtodo = new ClusterModel({
-        powerusage: req.body.powerusage,
+        
+      const newCluster = ({
+        name: req.body.name,
+        powerHigh: req.body.powerHigh,
+        powerAverage: req.body.powerAverage,
+        powerLow: req.body.powerLow,
+        energyConsumption: req.body.energyConsumption,
+        numServers: req.body.numServers,
+        location: req.body.location
       });
+      await createCluster(newCluster);
       
       //dependent on sql syntax:
       //await newtodo.save();
-      res.send(newtodo);*/
+      res.send({message: `created cluster: ${newCluster}`});
     })
   );
   

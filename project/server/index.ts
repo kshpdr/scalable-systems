@@ -4,10 +4,10 @@ import cors from 'cors';
 
 import bodyParser from 'body-parser';
 import Router from './routes';
-import { getclust } from './models/clusters';
-import { sequelize } from './db'
+import { getClusters } from './db/helpers';
+import { sequelize } from './db/db'
 
-const clusters = require('./models/clusters')
+import { Clusters } from './db/models/clusters';
 const app: express.Application = express();
 
 app.use(cors());
@@ -22,10 +22,11 @@ app.use(bodyParser.json());
 
 app.use("/api", Router);
 
-
 const start = async () => {
     try {
-        await sequelize.authenticate().then(() => {console.log("siuuuu")});
+        await sequelize.authenticate().then(() => {
+            console.log("DB User authenticated")}
+        );
         await sequelize.sync();
     }
     catch (err) {
@@ -35,8 +36,29 @@ const start = async () => {
 start();
 
 app.get('/api', (req, res) => {
-    res.send({ message: `Welcome to our API! ${getclust} \n \n ${JSON.stringify(getclust, null, 2)}` });
+    res.send({ message: `Welcome to our API!` });
 });
+
+app.get('/clusters', async (req, res) => {
+    try {
+        const clusters = await getClusters();
+        console.log(clusters)
+        res.send({ message: clusters });
+    } catch (error) {
+        res.status(500).send({ error: 'Failed to fetch clusters' });
+    }
+});
+
+app.post('/addCluster', async (req, res) => {
+    const clusterData = req.body;
+  
+    try {
+      const newCluster = await Clusters.create(clusterData);
+      res.status(201).send(newCluster);
+    } catch (error) {
+      res.status(500).send({ error: 'Failed to create new cluster' });
+    }
+  });  
 
 app.get('*', (req, res) =>{
     res.sendFile(path.join(clientBuildPath, 'index.html'));
