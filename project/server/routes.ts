@@ -1,10 +1,36 @@
 import express, { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-//import ClusterModel from 'model'; sobald das Datenbank modell feststeht
+import { externalApiCallandsort } from './usecase1/extApi_01';
+import { externalApiCallforScheduling } from './usecase2/extApi_02';
 import { Clusters } from './db/models/clusters'
 import { getClusters, createCluster } from './db/helpers';
+import { stringify } from 'querystring';
 
 const router = express.Router();
+
+
+router.get(
+  "/forecastCall",
+  asyncHandler(async (req: any, res: any) => {
+    
+    const event = new Date();
+    event.toISOString()
+
+    externalApiCallandsort('/regional/intensity/' + event.toISOString() + '/fw48h')
+    .then((reg_array) => { //users sends all the jobs in body of get call req.body
+
+      //reg
+
+      // do some scheduling 
+      //turn result into json
+      const jsonData = JSON.stringify("Helloworld");
+      res.send(jsonData); // The JSON object from the API call
+    })
+    .catch((error) => {
+      console.error(error); // Error handling for API call
+    });
+  })
+);
 
 router.get(
   "/externalApi",
