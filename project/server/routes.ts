@@ -16,14 +16,15 @@ router.get(
     const event = new Date();
     event.toISOString()
 
-    externalApiCallandsort('/regional/intensity/' + event.toISOString() + '/fw48h')
+    externalApiCallforScheduling('/regional/intensity/' + event.toISOString() + '/fw48h')
     .then((reg_array) => { //users sends all the jobs in body of get call req.body
 
       //reg
 
       // do some scheduling 
       //turn result into json
-      const jsonData = JSON.stringify("Helloworld");
+      const jsonData = JSON.stringify(reg_array);
+      console.log(jsonData);
       res.send(jsonData); // The JSON object from the API call
     })
     .catch((error) => {

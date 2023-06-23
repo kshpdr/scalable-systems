@@ -5,9 +5,9 @@ export function externalApiCallandsort(path:String) {
   return new Promise((resolve, reject) => {
     let data = '';
     //get the whole window 94 aufrufe
-    //curl -X GET https://api.carbonintensity.org.uk/regional/intensity/2023-06-23T10:26Z/fw24h \
+    //curl -X GET https://api.carbonintensity.org.uk/regional/intensity/2023-06-23T10:26Z/fw48h \
     //-H 'Accept: application/json'
-    
+
     https.get('https://api.carbonintensity.org.uk' + path, (res) => {
       
       res.on('data', (chunk) => {
