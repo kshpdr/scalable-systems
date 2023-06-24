@@ -29,6 +29,9 @@ const App: React.FC = () => {
     energyConsumption: string;
     numServers: string;
     location: string;
+    region: string;
+    numCores: string;
+    numTBsRam: string;
   }) => {
     try {
       const response = await fetch('http://localhost:3001/addCluster', {

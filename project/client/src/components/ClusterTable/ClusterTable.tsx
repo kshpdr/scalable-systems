@@ -10,6 +10,9 @@ interface Cluster {
   energyConsumption: number;
   numServers: number;
   location: string;
+  region: string;
+  numCores: number;
+  numTBsRam: number;
 }
 
 interface ClusterTableProps {
@@ -30,6 +33,9 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
           <Th>Energy Consumption</Th>
           <Th>Num Servers</Th>
           <Th>Location</Th>
+          <Th>Region</Th>
+          <Th>Num Cores</Th>
+          <Th>Num TBs Ram</Th>
         </tr>
       </thead>
       <tbody>
@@ -43,6 +49,9 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
             <Td>{cluster.energyConsumption}</Td>
             <Td>{cluster.numServers}</Td>
             <Td>{cluster.location}</Td>
+            <Td>{cluster.region}</Td>
+            <Td>{cluster.numCores}</Td>
+            <Td>{cluster.numTBsRam}</Td>
           </tr>
         ))}
       </tbody>
