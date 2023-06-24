@@ -1,5 +1,4 @@
 import { FC, FormEvent, SetStateAction, useState } from 'react';
-import { Form, Input, Button } from './ClusterForm.styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -46,40 +45,31 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
 
   return (
 <form onSubmit={handleSubmit}>
-
-<div className='form-group'>
+  <div className='form-group'>
       <label>Name:</label>
-      <input type="text" className='form-control' value={name} onChange={handleNameChanged}
-      />
-    </div>
+      <input type="text" className='form-control' value={name} onChange={handleNameChanged}/>
+  </div>
 
-<div className='form-group'>
-<label>Deadline:</label>
-      <input type="date" className='form-control' value={deadline} onChange={handleDeadlineChanged}
-      />
-</div>
+  <div className='form-group'>
+    <label>Deadline:</label>
+    <input type="date" className='form-control' value={deadline} onChange={handleDeadlineChanged} />
+  </div>
 
-<div className='form-group'>
-  <label>
-    Stoppable:
-  </label>
-  <br></br>
-<input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> Yes 
-<br></br>
-<input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> No 
-</div>
+  <div className='form-group'>
+    <label>
+      Stoppable:
+    </label>
+    <br></br>
+    <input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> Yes 
+    <br></br>
+    <input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> No 
+  </div>
 
-<div className='form-group'>
-
-<label>Time (enter in seconds):</label>
-      <input type="text" value={time} className='form-control' onChange={handleTimeChanged}
-      />
-</div>
-
-
+  <div className='form-group'>
+    <label>Time (enter in seconds):</label>
+    <input type="text" value={time} className='form-control' onChange={handleTimeChanged} />
+  </div>
 </form>
-
-
   );
 };
 
