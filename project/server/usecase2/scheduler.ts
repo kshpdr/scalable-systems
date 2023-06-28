@@ -11,30 +11,55 @@ interface job {
     timewindow: Date[];
 }
 
-export function scheduler(jobs: job[], data: region[]) {
     
-    // Flatten the data structure
-    const flattenedData = data.reduce((acc, { id, shortname, forecast }) => {
-        const entries = forecast.map(({ from, to, forecastvalue, index }) => ({
-          id,
-          shortname,
-          from,
-          to,
-          forecastvalue,
-          index
-        }));
-        console.log(acc)
-        console.log('--------')
-        console.log(entries)
-        return acc;
-      }, []);
+function regsorter(regions: region[]): [region, forecastdetails][] {
+    const sortedList: [region, forecastdetails][] = [];
     
-      // Sort the flattened data in ascending order based on forecastvalue
-      const sortedData = flattenedData.sort((a, b) => a.forecastvalue - b.forecastvalue);
+    // Iterate over each region
+    regions.forEach((region) => {
+        // Iterate over forecastdetails of each region
+        region.forecast.forEach((forecast) => {
+            sortedList.push([region, forecast]);
+        });
+    });
     
-      // Process the sorted data as per your requirements
-    //   sortedData.forEach((entry) => {
-    //     // Do something with each entry, e.g., log it
-    //     console.log(`ID: ${entry.id}, Shortname: ${entry.shortname}, Forecast Value: ${entry.forecastvalue}`);
-    //   });
-}
+    // Sort the list by forecastvalue in ascending order
+    sortedList.sort((a, b) => a[1].forecastvalue - b[1].forecastvalue);
+    
+    return sortedList;
+    }
+
+function scheduleJobs(regions: region[], jobs: job[]): job[] {
+    const sortedList: [region, forecastdetails][] = regsorter(regions);
+    
+    jobs.forEach((job) => {
+        let bestRegion: region | undefined = undefined;
+        let bestTimeslot: forecastdetails | undefined = undefined;
+    
+        sortedList.some(([region, forecast]) => {
+        if (job.stoppable && forecast.forecastvalue >= job.time) {
+            const availableTimeslots = region.forecast.filter(
+            (f) => f.forecastvalue >= job.time
+            );
+    
+            if (availableTimeslots.length > 0) {
+            bestRegion = region; // Store the found region separately
+            bestTimeslot = availableTimeslots[0];
+            return true;
+            }
+        }
+    
+        return false;
+        });
+    
+        if (!bestRegion || !bestTimeslot) {
+        throw new Error(`Unable to schedule job: ${job.name}`);
+        }
+    
+        job.regionname = bestRegion.shortname;
+        job.timewindow = [bestTimeslot.from, bestTimeslot.to];
+        bestTimeslot.forecastvalue += job.time; // Update forecastvalue to account for scheduled job
+    });
+    
+    return jobs;
+    }
