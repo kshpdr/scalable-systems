@@ -1,6 +1,7 @@
 import https from 'https';
 
 export interface forecastdetails {
+
     from: Date;
     to: Date;
     forecastvalue: number;
