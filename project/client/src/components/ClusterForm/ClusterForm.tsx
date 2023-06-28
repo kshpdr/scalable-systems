@@ -1,5 +1,5 @@
 import { FC, FormEvent, useState } from 'react';
-import { Form, Input, Button } from './ClusterForm.styles';
+import { Form, Input, Button, Select } from './ClusterForm.styles';
 
 interface ClusterFormProps {
   onSubmit: (cluster: {
@@ -48,7 +48,23 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
       <Input name="numCores" placeholder="Number of Cores" type="number" value={numCores} onChange={(e) => setNumCores(e.target.value)} />
       <Input name="numGBsRam" placeholder="Number of GBs of Ram" type="number" value={numTBsRam} onChange={(e) => setNumTBsRam(e.target.value)} />
       <Input name="location" placeholder="Datacenter Location" type={name} value={location} onChange={(e) => setLocation(e.target.value)} />
-      <Input name="region" placeholder="Datacenter Region" type={name} value={region} onChange={(e) => setRegion(e.target.value)} />
+      <Select name="region" value={region} onChange={(e) => setRegion(e.target.value)}>
+        <option value="" disabled hidden >Datacenter Region</option>
+        <option value="East England">East England</option>
+        <option value="East Midlands">East Midlands</option>
+        <option value="London">London</option>
+        <option value="North East England">North East England</option>
+        <option value="North Scotland">North Scotland</option>
+        <option value="North Wales & Merseyside">North Wales & Merseyside</option>
+        <option value="North West England">North West England</option>
+        <option value="South East England">South East England</option>
+        <option value="South England">South England</option>
+        <option value="South Scotland">South Scotland</option>
+        <option value="South Wales">South Wales</option>
+        <option value="South West England">South West England</option>
+        <option value="West Midlands">West Midlands</option>
+        <option value="Yorkshire">Yorkshire</option>
+      </Select>
       <Button type="submit">Submit</Button>
     </Form>
   );
