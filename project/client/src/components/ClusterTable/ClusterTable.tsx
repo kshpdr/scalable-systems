@@ -27,15 +27,15 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
         <tr>
           <Th>ID</Th>
           <Th>Name</Th>
-          <Th>Power High</Th>
-          <Th>Power Average</Th>
-          <Th>Power Low</Th>
-          <Th>Energy Consumption</Th>
-          <Th>Num Servers</Th>
+          <Th>Power <br></br> High</Th>
+          <Th>Power <br></br> Average</Th>
+          <Th>Power <br></br> Low</Th>
+          <Th>Energy <br></br> Consumption</Th>
+          <Th>Servers</Th>
+          <Th>Cores</Th>
+          <Th>Ram in TB</Th>
           <Th>Location</Th>
           <Th>Region</Th>
-          <Th>Num Cores</Th>
-          <Th>Num TBs Ram</Th>
         </tr>
       </thead>
       <tbody>
@@ -48,10 +48,10 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
             <Td>{cluster.powerLow}</Td>
             <Td>{cluster.energyConsumption}</Td>
             <Td>{cluster.numServers}</Td>
-            <Td>{cluster.location}</Td>
-            <Td>{cluster.region}</Td>
             <Td>{cluster.numCores}</Td>
             <Td>{cluster.numTBsRam}</Td>
+            <Td>{cluster.location}</Td>
+            <Td>{cluster.region}</Td>
           </tr>
         ))}
       </tbody>

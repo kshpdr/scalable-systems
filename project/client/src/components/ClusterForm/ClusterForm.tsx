@@ -9,10 +9,10 @@ interface ClusterFormProps {
     powerLow: string;
     energyConsumption: string;
     numServers: string;
-    location: string;
-    region: string;
     numCores: string;
     numTBsRam: string;
+    location: string;
+    region: string;
   }) => void;
 }
 
@@ -24,15 +24,15 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   const [powerLow, setPowerLow] = useState('');
   const [energyConsumption, setEnergyConsumption] = useState('');
   const [numServers, setNumServers] = useState('');
-  const [location, setLocation] = useState('');
-  const [region, setRegion] = useState('');
   const [numCores, setNumCores] = useState('');
   const [numTBsRam, setNumTBsRam] = useState('');
+  const [location, setLocation] = useState('');
+  const [region, setRegion] = useState('');
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const cluster = { name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, location, region, numCores, numTBsRam };
+    const cluster = { name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, numCores, numTBsRam, location, region};
 
     onSubmit(cluster);
   };
@@ -45,10 +45,10 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
       <Input name="powerLow" placeholder="Power Low" type="number" value={powerLow} onChange={(e) => setPowerLow(e.target.value)} />
       <Input name="energyConsumption" placeholder="Energy Consumption" type="number" value={energyConsumption} onChange={(e) => setEnergyConsumption(e.target.value)} />
       <Input name="numServers" placeholder="Number of Servers" type="number" value={numServers} onChange={(e) => setNumServers(e.target.value)} />
-      <Input name="location" placeholder="Precise Datacenter Location" type={name} value={location} onChange={(e) => setLocation(e.target.value)} />
-      <Input name="region" placeholder="Datacenter Region" type={name} value={region} onChange={(e) => setRegion(e.target.value)} />
       <Input name="numCores" placeholder="Number of Cores" type="number" value={numCores} onChange={(e) => setNumCores(e.target.value)} />
       <Input name="numGBsRam" placeholder="Number of GBs of Ram" type="number" value={numTBsRam} onChange={(e) => setNumTBsRam(e.target.value)} />
+      <Input name="location" placeholder="Datacenter Location" type={name} value={location} onChange={(e) => setLocation(e.target.value)} />
+      <Input name="region" placeholder="Datacenter Region" type={name} value={region} onChange={(e) => setRegion(e.target.value)} />
       <Button type="submit">Submit</Button>
     </Form>
   );
