@@ -1,16 +1,17 @@
 import https from 'https';
 
 export interface forecastdetails {
-  from: Date;
-  to: Date;
-  forecastvalue: number;
-  index: String;
+
+    from: Date;
+    to: Date;
+    forecastvalue: number;
+    index: String;
 }
 
 export interface region {
-  id: number;
-  shortname: String;
-  forecast: forecastdetails[];
+    id: number;
+    shortname: String;
+    forecast: forecastdetails[];
 }
 
 export function externalApiCallforScheduling(path:String) {
@@ -27,12 +28,37 @@ export function externalApiCallforScheduling(path:String) {
       });
 
       res.on('end', () => {
-        const jsonData: any[] = Array.of(JSON.parse(data));
+        const jsonData = JSON.parse(data); //weghauen später
 
-        //let region_arr: any[] = Array
+        //init array
+        let region_arr: region[] = [];
+        for (let i=0; i < 14; i++){
+            const aregion : region = {
+                id : i+1,
+                shortname : jsonData['data'][0]['regions'][i]['shortname'],
+                forecast: []
+            }        
+            region_arr.push(aregion)
+        }
+
+        for (let i=0; i < (jsonData['data'].length); i++){
+            for (let r=0 ; r < 14 ; r++){
+                const n_detail : forecastdetails = {
+                    from: jsonData['data'][i]['from'],
+                    to: jsonData['data'][i]['to'],
+                    forecastvalue: jsonData['data'][i]['regions'][r]['intensity']['forecast'], 
+                    index: jsonData['data'][i]['regions'][r]['intensity']['index']
+                }
+                console.log(jsonData['data'][i]['regions'][r]['intensity']['forecast']);
+                console.log(jsonData['data'][i]['regions'][r]['intensity']['index']);
+
+                region_arr[r].forecast.push(n_detail)
+
+            }
+        }
 
         //return result
-        //resolve(cleanest_region);
+        resolve(region_arr);
       });
 
       }).on('error', (error) => {

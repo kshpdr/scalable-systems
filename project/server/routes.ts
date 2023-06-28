@@ -23,7 +23,8 @@ router.get(
 
       // do some scheduling 
       //turn result into json
-      const jsonData = JSON.stringify("Helloworld");
+      const jsonData = JSON.stringify(reg_array);
+      console.log(jsonData);
       res.send(jsonData); // The JSON object from the API call
     })
     .catch((error) => {
