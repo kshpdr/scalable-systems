@@ -1,5 +1,17 @@
 import https from 'https';
 
+export interface forecastdetails {
+  from: Date;
+  to: Date;
+  forecastvalue: number;
+  index: String;
+}
+
+export interface region {
+  id: number;
+  shortname: String;
+  forecast: forecastdetails[];
+}
 
 export function externalApiCallforScheduling(path:String) {
   return new Promise((resolve, reject) => {

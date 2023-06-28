@@ -16,7 +16,7 @@ router.get(
     const event = new Date();
     event.toISOString()
 
-    externalApiCallandsort('/regional/intensity/' + event.toISOString() + '/fw48h')
+    externalApiCallforScheduling('/regional/intensity/' + event.toISOString() + '/fw48h')
     .then((reg_array) => { //users sends all the jobs in body of get call req.body
 
       //reg
