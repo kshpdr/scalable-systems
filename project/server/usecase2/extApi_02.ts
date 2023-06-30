@@ -1,10 +1,14 @@
 import https from 'https';
+import { Clusters } from '../db/models/clusters';
+import { getClusterById, getClusters} from '../db/helpers';
+
 
 export interface forecastdetails {
     from: Date;
     to: Date;
     forecastvalue: number;
     index: String;
+    available_servers: number; //0-100
 }
 
 export interface region {
@@ -13,7 +17,9 @@ export interface region {
     forecast: forecastdetails[];
 }
 
-export function externalApiCallforScheduling(path:String) {
+export async function externalApiCallforScheduling(path:String) {
+      const clusters = await getClusterById();
+
   return new Promise((resolve, reject) => {
     let data = '';
     //get the whole window 94 aufrufe
@@ -42,11 +48,15 @@ export function externalApiCallforScheduling(path:String) {
 
         for (let i=0; i < (jsonData['data'].length); i++){
             for (let r=0 ; r < 14 ; r++){
+                const servernum = clusters[r];
+                //const servernum  = currentcluster.numServers// datenbankaufruf server aus  
+
                 const n_detail : forecastdetails = {
                     from: jsonData['data'][i]['from'],
                     to: jsonData['data'][i]['to'],
                     forecastvalue: jsonData['data'][i]['regions'][r]['intensity']['forecast'], 
-                    index: jsonData['data'][i]['regions'][r]['intensity']['index']
+                    index: jsonData['data'][i]['regions'][r]['intensity']['index'],
+                    available_servers: servernum
                 }
                 console.log(jsonData['data'][i]['regions'][r]['intensity']['forecast']);
                 console.log(jsonData['data'][i]['regions'][r]['intensity']['index']);

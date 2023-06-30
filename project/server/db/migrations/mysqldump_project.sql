@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.33, for macos13 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Linux (x86_64)
 --
 -- Host: localhost    Database: project
 -- ------------------------------------------------------
--- Server version	8.0.33
+-- Server version	8.0.33-0ubuntu0.20.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,9 +30,8 @@ CREATE TABLE `clusters` (
   `powerLow` float DEFAULT NULL,
   `energyConsumption` float DEFAULT NULL,
   `numServers` int DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +40,7 @@ CREATE TABLE `clusters` (
 
 LOCK TABLES `clusters` WRITE;
 /*!40000 ALTER TABLE `clusters` DISABLE KEYS */;
-INSERT INTO `clusters` VALUES (1,'cluster420',50000,30000,10000,12345,69,'Niederhohenwestostloch'),(2,'cluster2',20000,10000,0,3050,10,'TUB'),(3,'cluster3',20000,10000,0,3050,20,'TUM'),(4,'cluster4',0,0,0,0,20,'Bib TU Berlin');
+INSERT INTO `clusters` VALUES (1,'North Scotland',0,0,0,0,20),(2,'South Scotland',0,0,0,0,20),(3,'North West England',0,0,0,0,20),(4,'North East England',0,0,0,0,20),(5,'Yorkshire',0,0,0,0,20),(6,'North Wales',0,0,0,0,20),(7,'South Wales',0,0,0,0,20),(8,'West Midlands',0,0,0,0,20),(9,'East Midlands',0,0,0,0,20),(10,'East England',0,0,0,0,20),(11,'South West England',0,0,0,0,20),(12,'South England',0,0,0,0,20),(13,'London',0,0,0,0,20),(14,'South East England',0,0,0,0,20);
 /*!40000 ALTER TABLE `clusters` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-04 16:36:13
+-- Dump completed on 2023-06-30 17:10:41
