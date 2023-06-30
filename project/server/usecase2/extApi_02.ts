@@ -4,6 +4,7 @@ import { getClusterById, getClusters} from '../db/helpers';
 
 
 export interface forecastdetails {
+
     from: Date;
     to: Date;
     forecastvalue: number;
