@@ -10,6 +10,7 @@ export interface forecastdetails {
     forecastvalue: number;
     index: String;
     available_servers: number; //0-100
+
 }
 
 export interface region {
