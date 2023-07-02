@@ -1,0 +1,43 @@
+version: '3'
+services:
+  client:
+    build: client
+    ports:
+      - '3000:3000'
+      - '5173:5173'
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  server:
+    build: server/
+    ports:
+      - '3001:3001'
+    depends_on:
+      - db
+    environment: 
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_NAME=project
+      - DB_PASS=VeryUnsafe!!!
+    volumes:
+    - ./server:/app
+
+  db:
+    platform: linux/x86_64
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./server/db/migrations/mysqldump_project.sql:/docker-entrypoint-initdb.d/mysqldump_project.sql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: VeryUnsafe!!!
+      MYSQL_DATABASE: project
+      MYSQL_USER: root
+      MYSQL_PASSWORD: VeryUnsafe!!!
+    command: ['--init-file', '/docker-entrypoint-initdb.d/mysqldump_project.sql']
+
+volumes:
+  db_data: {}

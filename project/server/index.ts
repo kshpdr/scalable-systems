@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json())
 
 const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
-const clientBuildPath = path.resolve(__dirname, '..', 'client');
+const clientBuildPath = path.join(__dirname, 'client', 'dist');
 
 app.use(express.static(path.join(__dirname, 'client/dist')));
 app.use(express.json());

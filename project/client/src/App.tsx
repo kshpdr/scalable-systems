@@ -11,7 +11,7 @@ const App: React.FC = () => {
 
   const fetchClusters = async () => {
     try {
-      const response = await fetch('http://localhost:3001/clusters');
+      const response = await fetch('http://server:3001/clusters');
       const data = await response.json();
       setClusters(data.message);
     } catch (error) {
@@ -29,7 +29,7 @@ const App: React.FC = () => {
     location: string;
   }) => {
     try {
-      const response = await fetch('http://localhost:3001/addCluster', {
+      const response = await fetch('http://server:3001/addCluster', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
