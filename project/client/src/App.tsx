@@ -7,7 +7,6 @@ import ClusterTable from './components/ClusterTable';
 import { Content } from './App.styles';
 
 const App: React.FC = () => {
-  const [message, setMessage] = useState('Loading...');
   const [clusters, setClusters] = useState([]);
 
   const fetchClusters = async () => {
@@ -17,7 +16,6 @@ const App: React.FC = () => {
       setClusters(data.message);
     } catch (error) {
       console.error('Error:', error);
-      setMessage('Error fetching clusters');
     }
   }
 
