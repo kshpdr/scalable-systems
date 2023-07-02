@@ -1,69 +1,36 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Welcome from './pages/Welcome';
-import ClusterForm from './components/ClusterForm';
+import Homepage from './pages/Homepage/Homepage';
+import Datacenters from './pages/Datacenters/Datacenters';
+import Jobs from './pages/Jobs/Jobs';
 import { Layout } from './components/Layout/Layout.styles';
-import ClusterTable from './components/ClusterTable';
-import { Content } from './App.styles';
+import { Content } from './pages/Datacenters/Datacenters.styles';
 
 const App: React.FC = () => {
-  const [clusters, setClusters] = useState([]);
-
-  const fetchClusters = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/clusters`)
-      const data = await response.json();
-      setClusters(data.message);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
-
-  const handleSubmit = async (cluster: {
-    name: string;
-    powerHigh: string;
-    powerAverage: string;
-    powerLow: string;
-    energyConsumption: string;
-    numServers: string;
-    location: string;
-  }) => {
-    try {
-      const response = await fetch(`http://${import.meta.env.VITE_REACT_APP_API_BASE_URL}/addCluster`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cluster),
-      });
-      console.log(cluster)
-
-      if (response.ok) {
-        fetchClusters(); 
-      } else {
-        throw new Error('HTTP error ' + response.status);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-
-  useEffect(() => {
-    fetchClusters();
-  }, []);
-
   return (
-    <div>
-      <Navbar />
-      <Layout>
-        <Welcome />
-        <Content>
-          <ClusterForm onSubmit={handleSubmit} />
-          <ClusterTable clusters={clusters} />
-        </Content>
-      </Layout>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Layout>
+          <Welcome />
+          <Content>
+            <Switch>
+              <Route exact path="/">
+                <Homepage />
+              </Route>
+              <Route path="/datacenters">
+                <Datacenters />
+              </Route>
+              <Route path="/jobs">
+                <Jobs />
+              </Route>
+            </Switch>
+          </Content>
+        </Layout>
+      </div>
+    </Router>
   );
 }
 
