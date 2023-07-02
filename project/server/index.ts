@@ -14,9 +14,9 @@ app.use(cors());
 app.use(express.json())
 
 const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
-const clientBuildPath = path.resolve(__dirname, '..', 'client');
+// const clientBuildPath = path.resolve(__dirname, '..', 'client');
 
-app.use(express.static(path.join(__dirname, 'client/dist')));
+// app.use(express.static(path.join(__dirname, 'client/dist')));
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -60,9 +60,9 @@ app.post('/addCluster', async (req, res) => {
     }
   });  
 
-app.get('*', (req, res) =>{
-    res.sendFile(path.join(clientBuildPath, 'index.html'));
-});
+// app.get('*', (req, res) =>{
+//     res.sendFile(path.join(clientBuildPath, 'index.html'));
+// });
 
 app.listen(port, () => {
     console.log(`Server is listening on http://localhost:${port}`);
