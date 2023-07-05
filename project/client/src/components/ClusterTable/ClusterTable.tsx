@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Th, Td, Table } from './ClusterTable.styles';
 
 interface Cluster {

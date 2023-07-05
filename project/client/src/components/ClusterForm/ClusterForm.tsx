@@ -26,8 +26,8 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   const [numServers, setNumServers] = useState('');
   const [numCores, setNumCores] = useState('');
   const [numTBsRam, setNumTBsRam] = useState('');
-  const [location, setLocation] = useState('');
   const [region, setRegion] = useState('');
+  const [location, setLocation] = useState('');
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
