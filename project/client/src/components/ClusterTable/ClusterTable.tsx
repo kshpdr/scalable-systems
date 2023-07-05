@@ -1,14 +1,12 @@
 import { FC, useEffect } from 'react';
 import { Th, Td, Table } from './ClusterTable.styles';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Cluster {
-  id: number;
   name: string;
-  powerHigh: number;
-  powerAverage: number;
-  powerLow: number;
-  energyConsumption: number;
-  numServers: number;
+  deadline: string;
+  stoppable: string ;
+  time: number;
   location: string;
 }
 
@@ -19,34 +17,32 @@ interface ClusterTableProps {
 const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
 
   return (
+   
     <Table>
       <thead>
         <tr>
-          <Th>ID</Th>
           <Th>Name</Th>
-          <Th>Power High</Th>
-          <Th>Power Average</Th>
-          <Th>Power Low</Th>
-          <Th>Energy Consumption</Th>
-          <Th>Num Servers</Th>
+          <Th>Deadline</Th>
+          <Th>Stoppable</Th>
+          <Th>Time</Th>
           <Th>Location</Th>
+          <Th>?</Th>
+          <Th>?</Th> 
         </tr>
       </thead>
       <tbody>
         {clusters.map(cluster => (
-          <tr key={cluster.id}>
-            <Td>{cluster.id}</Td>
+          <tr key={cluster.name}>
             <Td>{cluster.name}</Td>
-            <Td>{cluster.powerHigh}</Td>
-            <Td>{cluster.powerAverage}</Td>
-            <Td>{cluster.powerLow}</Td>
-            <Td>{cluster.energyConsumption}</Td>
-            <Td>{cluster.numServers}</Td>
+            <Td>{cluster.deadline}</Td>
+            <Td>{cluster.stoppable}</Td>
+            <Td>{cluster.time}</Td>
             <Td>{cluster.location}</Td>
           </tr>
         ))}
       </tbody>
     </Table>
+  
   );
 };
 
