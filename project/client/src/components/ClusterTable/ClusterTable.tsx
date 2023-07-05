@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Th, Td, Table } from './ClusterTable.styles';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Cluster {
-  id: number;
   name: string;
   powerHigh: number;
   powerAverage: number;
@@ -23,10 +23,10 @@ interface ClusterTableProps {
 const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
 
   return (
+   
     <Table>
       <thead>
         <tr>
-          <Th>ID</Th>
           <Th>Name</Th>
           <Th>Power <br></br> High</Th>
           <Th>Power <br></br> Average</Th>
@@ -42,8 +42,7 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
       </thead>
       <tbody>
         {clusters.map(cluster => (
-          <tr key={cluster.id}>
-            <Td>{cluster.id}</Td>
+          <tr key={cluster.name}>
             <Td>{cluster.name}</Td>
             <Td>{cluster.powerHigh}</Td>
             <Td>{cluster.powerAverage}</Td>
@@ -59,6 +58,7 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
         ))}
       </tbody>
     </Table>
+  
   );
 };
 
