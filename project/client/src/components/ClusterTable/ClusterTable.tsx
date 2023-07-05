@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Th, Td, Table } from './ClusterTable.styles';
 
 interface Cluster {
@@ -10,6 +10,10 @@ interface Cluster {
   energyConsumption: number;
   numServers: number;
   location: string;
+  region: string;
+  numCores: number;
+  numTBsRam: number;
+  auslastung: number;
 }
 
 interface ClusterTableProps {
@@ -24,12 +28,16 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
         <tr>
           <Th>ID</Th>
           <Th>Name</Th>
-          <Th>Power High</Th>
-          <Th>Power Average</Th>
-          <Th>Power Low</Th>
-          <Th>Energy Consumption</Th>
-          <Th>Num Servers</Th>
+          <Th>Power <br></br> High</Th>
+          <Th>Power <br></br> Average</Th>
+          <Th>Power <br></br> Low</Th>
+          <Th>Energy <br></br> Consumption</Th>
+          <Th>Servers</Th>
+          <Th>Cores</Th>
+          <Th>Ram in TB</Th>
           <Th>Location</Th>
+          <Th>Region</Th>
+          <Th>Auslastung</Th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +50,11 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
             <Td>{cluster.powerLow}</Td>
             <Td>{cluster.energyConsumption}</Td>
             <Td>{cluster.numServers}</Td>
+            <Td>{cluster.numCores}</Td>
+            <Td>{cluster.numTBsRam}</Td>
             <Td>{cluster.location}</Td>
+            <Td>{cluster.region}</Td>
+            <Td>{cluster.auslastung}</Td>
           </tr>
         ))}
       </tbody>

@@ -82,7 +82,10 @@ router.get(
         powerLow: req.body.powerLow,
         energyConsumption: req.body.energyConsumption,
         numServers: req.body.numServers,
-        location: req.body.location
+        location: req.body.location,
+        region: req.body.region,
+        numCores: req.body.numCores,
+        numTBsRam: req.body.numTBsRam
       });
       await createCluster(newCluster);
       
