@@ -8,6 +8,7 @@ interface ClusterFormProps {
     deadline: string;
     stoppable: string;
     time: string;
+    numservers: string 
   }) => void;
 }
 
@@ -17,12 +18,12 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   const [deadline, setDeadline] = useState(''); 
   const [stoppable, setStoppable] = useState(''); 
   const [time, setTime] = useState('');
-  const [entries, setEntries] = useState([]);
+  const [numservers, setNumServers] = useState(''); 
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const cluster = { name, stoppable, deadline, time };
+    const cluster = { name, stoppable, deadline, time, numservers };
 
     onSubmit(cluster);
   };
@@ -41,6 +42,10 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
 
   const handleTimeChanged = (e: { target: { value: SetStateAction<string>; }; }) => {
     setTime(e.target.value) 
+  }; 
+
+  const handleNumServesChanged = (e: { target: { value: SetStateAction<string>; }; }) => {
+    setNumServers(e.target.value) 
   }; 
 
   
@@ -70,6 +75,11 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   <div className='form-group'>
     <label>Time (enter in seconds):</label>
     <input type="text" value={time} className='form-control' onChange={handleTimeChanged} /> 
+  </div>
+
+  <div className='form-group'>
+    <label>Number of Servers:</label>
+    <input type="text" value={numservers} className='form-control' onChange={handleNumServesChanged} /> 
   </div>
 </form>
 <br></br>

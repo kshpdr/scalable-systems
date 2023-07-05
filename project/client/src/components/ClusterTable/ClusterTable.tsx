@@ -5,9 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 interface Cluster {
   name: string;
   deadline: string;
-  stoppable: string ;
+  stoppable: string;
   time: number;
-  location: string;
+  region: string;
+  timedwindows: string;
+  numservers: number
 }
 
 interface ClusterTableProps {
@@ -25,9 +27,9 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
           <Th>Deadline</Th>
           <Th>Stoppable</Th>
           <Th>Time</Th>
-          <Th>Location</Th>
-          <Th>?</Th>
-          <Th>?</Th> 
+          <Th>Region</Th>
+          <Th>TimedWindows</Th>
+          <Th>NumServers</Th> 
         </tr>
       </thead>
       <tbody>
@@ -37,7 +39,9 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
             <Td>{cluster.deadline}</Td>
             <Td>{cluster.stoppable}</Td>
             <Td>{cluster.time}</Td>
-            <Td>{cluster.location}</Td>
+            <Td>{cluster.region}</Td>
+            <Td>{cluster.timedwindows}</Td>
+            <Td>{cluster.numservers}</Td>
           </tr>
         ))}
       </tbody>
