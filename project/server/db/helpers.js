@@ -20,3 +20,14 @@ export async function createCluster({name, powerHigh, powerAverage, powerLow, en
     })
     console.log(newClust)
 }
+
+export async function getClusterById() {
+    const cluster = await Clusters.findAll({
+        attributes: ['numServers']
+    });
+      
+    // Extrahiere die `numServers`-Werte aus dem Cluster-Objekt
+    const numbersArray = cluster.map((item) => item.numServers);
+      
+    return numbersArray;
+}

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.33, for macos13 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Linux (x86_64)
 --
 -- Host: localhost    Database: project
 -- ------------------------------------------------------
--- Server version	8.0.33
+-- Server version	8.0.33-0ubuntu0.20.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,7 +35,7 @@ CREATE TABLE `clusters` (
   `numCores` int DEFAULT NULL,
   `numTBsRam` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `clusters` (
 
 LOCK TABLES `clusters` WRITE;
 /*!40000 ALTER TABLE `clusters` DISABLE KEYS */;
-INSERT INTO `clusters` VALUES (1,'cluster420',50000,30000,10000,12345,69,'Niederhohenwestostloch','South East England',20000,400),(2,'cluster2',20000,10000,0,3050,10,'TUB','London',200000,4000),(3,'cluster3',20000,10000,0,3050,20,'TUM','Yorkshire',10000,2000),(4,'cluster4',0,0,0,0,20,'Bib TU Berlin','South Scotland',50,1);
+INSERT INTO `clusters` VALUES (1,'cluster 1',0,0,0,0,20,"",'North Scotland',0,0),(2,'cluster 2',0,0,0,0,20,"",'South Scotland', 0,0),(3,'cluster 3',0,0,0,0,20, "","North West England",0,0),(4,'cluster 4',0,0,0,0,20, "","North East England",0,0),(5,'cluster 5',0,0,0,0,20, "","Yorkshire",0,0),(6,'cluster 6',0,0,0,0,20, "","North Wales",0,0),(7,'cluster 7',0,0,0,0,20,"", "South Wales",0,0),(8,'cluster 8',0,0,0,0,20,"","West Midlands"),(9,'cluster 9',0,0,0,0,20, "","East Midlands",0,0),(10,'cluster 10',0,0,0,0,20, "", "East England",0,0),(11,'cluster 11',0,0,0,0,20, '','South West England',0,0),(12,'cluster 12',0,0,0,0,20, "", "South England",0,0),(13,'cluster 13',0,0,0,0,20,"","London",0,0),(14,'cluster 14',0,0,0,0,20,"","South East England",0,0);
 /*!40000 ALTER TABLE `clusters` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-04 16:36:13
+-- Dump completed on 2023-06-30 17:10:41

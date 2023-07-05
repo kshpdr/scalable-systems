@@ -1,10 +1,59 @@
 import express, { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
-//import ClusterModel from 'model'; sobald das Datenbank modell feststeht
+import { externalApiCallandsort } from './usecase1/extApi_01';
+import { externalApiCallforScheduling } from './usecase2/extApi_02';
 import { Clusters } from './db/models/clusters'
 import { getClusters, createCluster } from './db/helpers';
-
+import { stringify } from 'querystring';
+import { scheduleJobs } from './usecase2/scheduler';
+import { fakeclusters, fakejobs } from './usecase2/fakejobs';
+import { region } from './usecase2/extApi_02';
+import { cluster } from './interfaces';
 const router = express.Router();
+
+
+router.get(
+  "/forecastCall",
+  asyncHandler(async (req: any, res: any) => {
+    
+    const event = new Date();
+    event.toISOString()
+
+    externalApiCallforScheduling('/regional/intensity/' + event.toISOString() + '/fw48h')
+    .then((reg_array) => { //users sends all the jobs in body of get call req.body
+      //reg
+      //scheduler(req.body, reg_array)
+      // do some scheduling 
+      //turn result into json
+      const clusters = getClusters()
+      const updatedJobs = scheduleJobs(reg_array, fakejobs, fakeclusters)
+
+      const jsonData = JSON.stringify(updatedJobs);
+      console.log(jsonData);
+      res.send(jsonData); // The JSON object from the API call
+    })
+    .catch((error) => {
+      console.error(error); // Error handling for API call
+    });
+  })
+);
+
+router.get(
+  "/externalApi",
+  asyncHandler(async (req: any, res: any) => {
+    
+    const event = new Date();
+    event.toISOString()
+
+    externalApiCallandsort('/regional/intensity/' + event.toISOString() + '/fw24h')
+    .then((jsonData) => {
+      res.send(jsonData); // The JSON object from the API call
+    })
+    .catch((error) => {
+      console.error(error); // Error handling for API call
+    });
+  })
+);
 
 router.get(
     "/all",
