@@ -17,6 +17,7 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   const [deadline, setDeadline] = useState(''); 
   const [stoppable, setStoppable] = useState(''); 
   const [time, setTime] = useState('');
+  const [entries, setEntries] = useState([]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -42,8 +43,9 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
     setTime(e.target.value) 
   }; 
 
-
+  
   return (
+    <div>
 <form onSubmit={handleSubmit}>
   <div className='form-group'>
       <label>Name:</label>
@@ -67,9 +69,13 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
 
   <div className='form-group'>
     <label>Time (enter in seconds):</label>
-    <input type="text" value={time} className='form-control' onChange={handleTimeChanged} />
+    <input type="text" value={time} className='form-control' onChange={handleTimeChanged} /> 
   </div>
 </form>
+<br></br>
+<button type="button" style={{marginRight: 20}} className="btn btn-light">Add</button>
+<button type="button" className="btn btn-primary">Submit</button>
+</div>
   );
 };
 
