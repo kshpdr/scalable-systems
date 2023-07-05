@@ -31,6 +31,9 @@ CREATE TABLE `clusters` (
   `energyConsumption` float DEFAULT NULL,
   `numServers` int DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
+  `region` varchar(255) DEFAULT NULL,
+  `numCores` int DEFAULT NULL,
+  `numTBsRam` float DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +44,7 @@ CREATE TABLE `clusters` (
 
 LOCK TABLES `clusters` WRITE;
 /*!40000 ALTER TABLE `clusters` DISABLE KEYS */;
-INSERT INTO `clusters` VALUES (1,'cluster420',50000,30000,10000,12345,69,'Niederhohenwestostloch'),(2,'cluster2',20000,10000,0,3050,10,'TUB'),(3,'cluster3',20000,10000,0,3050,20,'TUM'),(4,'cluster4',0,0,0,0,20,'Bib TU Berlin');
+INSERT INTO `clusters` VALUES (1,'cluster420',50000,30000,10000,12345,69,'Niederhohenwestostloch','South East England',20000,400),(2,'cluster2',20000,10000,0,3050,10,'TUB','London',200000,4000),(3,'cluster3',20000,10000,0,3050,20,'TUM','Yorkshire',10000,2000),(4,'cluster4',0,0,0,0,20,'Bib TU Berlin','South Scotland',50,1);
 /*!40000 ALTER TABLE `clusters` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

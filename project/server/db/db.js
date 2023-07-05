@@ -1,11 +1,13 @@
 const { Sequelize } = require('sequelize');
 const mysql = require('mysql2');
 
+require('dotenv').config({ path: __dirname + '/../.env' });
+
 const db_data = {
-    host: 'localhost',
-    user: 'root',
-    database: 'project',
-    password: 'VeryUnsafe!!!'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASS
 }
 
 const conn = mysql.createConnection(db_data);

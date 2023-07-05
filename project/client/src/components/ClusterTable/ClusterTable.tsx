@@ -1,15 +1,19 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Th, Td, Table } from './ClusterTable.styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Cluster {
   name: string;
-  deadline: string;
-  stoppable: string;
-  time: number;
+  powerHigh: number;
+  powerAverage: number;
+  powerLow: number;
+  energyConsumption: number;
+  numServers: number;
+  location: string;
   region: string;
-  timedwindows: string;
-  numservers: number
+  numCores: number;
+  numTBsRam: number;
+  auslastung: number;
 }
 
 interface ClusterTableProps {
@@ -24,24 +28,32 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
       <thead>
         <tr>
           <Th>Name</Th>
-          <Th>Deadline</Th>
-          <Th>Stoppable</Th>
-          <Th>Time</Th>
+          <Th>Power <br></br> High</Th>
+          <Th>Power <br></br> Average</Th>
+          <Th>Power <br></br> Low</Th>
+          <Th>Energy <br></br> Consumption</Th>
+          <Th>Servers</Th>
+          <Th>Cores</Th>
+          <Th>Ram in TB</Th>
+          <Th>Location</Th>
           <Th>Region</Th>
-          <Th>TimedWindows</Th>
-          <Th>NumServers</Th> 
+          <Th>Auslastung</Th>
         </tr>
       </thead>
       <tbody>
         {clusters.map(cluster => (
           <tr key={cluster.name}>
             <Td>{cluster.name}</Td>
-            <Td>{cluster.deadline}</Td>
-            <Td>{cluster.stoppable}</Td>
-            <Td>{cluster.time}</Td>
+            <Td>{cluster.powerHigh}</Td>
+            <Td>{cluster.powerAverage}</Td>
+            <Td>{cluster.powerLow}</Td>
+            <Td>{cluster.energyConsumption}</Td>
+            <Td>{cluster.numServers}</Td>
+            <Td>{cluster.numCores}</Td>
+            <Td>{cluster.numTBsRam}</Td>
+            <Td>{cluster.location}</Td>
             <Td>{cluster.region}</Td>
-            <Td>{cluster.timedwindows}</Td>
-            <Td>{cluster.numservers}</Td>
+            <Td>{cluster.auslastung}</Td>
           </tr>
         ))}
       </tbody>
