@@ -6,7 +6,7 @@ import { Clusters } from './db/models/clusters'
 import { getClusters, createCluster } from './db/helpers';
 import { stringify } from 'querystring';
 import { scheduleJobs } from './usecase2/scheduler';
-import { fakejobs } from './usecase2/fakejobs';
+import { fakeclusters, fakejobs } from './usecase2/fakejobs';
 import { region } from './usecase2/extApi_02';
 import { cluster } from './interfaces';
 const router = express.Router();
@@ -26,9 +26,9 @@ router.get(
       // do some scheduling 
       //turn result into json
       const clusters = getClusters()
-      const updatedJobs = scheduleJobs(reg_array, fakejobs, clusters)
+      const updatedJobs = scheduleJobs(reg_array, fakejobs, fakeclusters)
 
-      const jsonData = JSON.stringify(reg_array);
+      const jsonData = JSON.stringify(updatedJobs);
       console.log(jsonData);
       res.send(jsonData); // The JSON object from the API call
     })
