@@ -27,9 +27,6 @@ export const Clusters = sequelize.define('clusters',{
     numServers: {
         type: DataTypes.INTEGER
     },
-    location: {
-        type: DataTypes.STRING
-    }
 }, {
     tableName: 'clusters',
     timestamps: false

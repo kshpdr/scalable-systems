@@ -2,7 +2,7 @@ import { Json } from "sequelize/types/utils";
 import { forecastdetails, region } from './extApi_02'
 import { Cluster } from "cluster";
 
-interface job {
+export interface job {
     name: String;
     deadline: Date;
     stoppable: boolean;
@@ -38,7 +38,7 @@ function compareJobsByDeadline(job1: job, job2: job): number {
     return deadlineDiff1 - deadlineDiff2;
     }
 
-function scheduleJobs(regions: region[], jobs: job[], clusters: Cluster[]): job[] {
+export function scheduleJobs(regions: region[], jobs: job[], clusters: Cluster[]): job[] {
     const sortedList: [region, forecastdetails][] = regsorter(regions);
     jobs = jobs.sort(compareJobsByDeadline)
 

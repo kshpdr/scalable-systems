@@ -5,9 +5,10 @@ import { externalApiCallforScheduling } from './usecase2/extApi_02';
 import { Clusters } from './db/models/clusters'
 import { getClusters, createCluster } from './db/helpers';
 import { stringify } from 'querystring';
-import { scheduler } from './usecase2/scheduler';
+import { scheduleJobs } from './usecase2/scheduler';
+import { fakejobs } from './usecase2/fakejobs';
 import { region } from './usecase2/extApi_02';
-
+import { cluster } from './interfaces';
 const router = express.Router();
 
 
@@ -20,11 +21,13 @@ router.get(
 
     externalApiCallforScheduling('/regional/intensity/' + event.toISOString() + '/fw48h')
     .then((reg_array) => { //users sends all the jobs in body of get call req.body
-      console.log('hui')
       //reg
       //scheduler(req.body, reg_array)
       // do some scheduling 
       //turn result into json
+      const clusters = getClusters()
+      const updatedJobs = scheduleJobs(reg_array, fakejobs, clusters)
+
       const jsonData = JSON.stringify(reg_array);
       console.log(jsonData);
       res.send(jsonData); // The JSON object from the API call
