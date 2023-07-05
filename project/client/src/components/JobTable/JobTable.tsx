@@ -1,4 +1,5 @@
 import { FC, useEffect } from 'react';
+import { Th, Td, Table } from './JobTable.styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Job {
@@ -19,32 +20,32 @@ const JobTable: FC<JobTableProps> = ({ jobs }) => {
 
   return (
    
-    <table>
+    <Table>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Deadline</th>
-          <th>Stoppable</th>
-          <th>Time</th>
-          <th>Region</th>
-          <th>TimedWindows</th>
-          <th>NumServers</th> 
+          <Th>Name</Th>
+          <Th>Deadline</Th>
+          <Th>Stoppable</Th>
+          <Th>Time</Th>
+          <Th>Region</Th>
+          <Th>TimedWindows</Th>
+          <Th>NumServers</Th> 
         </tr>
       </thead>
       <tbody>
         {jobs.map(job => (
           <tr key={job.name}>
-            <td>{job.name}</td>
-            <td>{job.deadline}</td>
-            <td>{job.stoppable}</td>
-            <td>{job.time}</td>
-            <td>{job.region}</td>
-            <td>{job.timedwindows}</td>
-            <td>{job.numservers}</td>
+            <Td>{job.name}</Td>
+            <Td>{job.deadline}</Td>
+            <Td>{job.stoppable}</Td>
+            <Td>{job.time}</Td>
+            <Td>{job.region}</Td>
+            <Td>{job.timedwindows}</Td>
+            <Td>{job.numservers}</Td>
           </tr>
         ))}
       </tbody>
-    </table>
+    </Table>
   
   );
 };
