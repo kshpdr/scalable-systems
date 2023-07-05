@@ -4,7 +4,7 @@ export async function getClusters() {
     return await Clusters.findAll();
 }
 
-export async function createCluster({name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, location}) {
+export async function createCluster({name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, location, region, numCores, numTBsRam}) {
     const newClust = Clusters.create({
         id: "id",
         name: name,
@@ -13,7 +13,10 @@ export async function createCluster({name, powerHigh, powerAverage, powerLow, en
         powerLow: powerLow,
         energyConsumption: energyConsumption,
         numServers: numServers,
-        location: location 
+        location: location,
+        region: region,
+        numCores: numCores,
+        numTBsRam: numTBsRam 
     })
     console.log(newClust)
 }

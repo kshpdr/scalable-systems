@@ -29,6 +29,15 @@ export const Clusters = sequelize.define('clusters',{
     },
     location: {
         type: DataTypes.STRING
+    },
+    region: {
+        type: DataTypes.STRING
+    },
+    numCores: {
+        type: DataTypes.INTEGER
+    },
+    numTBsRam: {
+        type: DataTypes.FLOAT
     }
 }, {
     tableName: 'clusters',
