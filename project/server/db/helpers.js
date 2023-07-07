@@ -1,7 +1,7 @@
 import { Clusters } from "./models/clusters";
 
 export async function getClusters() {
-    return await Clusters.findAll();
+    return await Clusters.findAll({raw: true});
 }
 
 export async function createCluster({name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, location, region, numCores, numTBsRam}) {
