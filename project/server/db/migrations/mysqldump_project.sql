@@ -44,7 +44,7 @@ CREATE TABLE `clusters` (
 
 LOCK TABLES `clusters` WRITE;
 /*!40000 ALTER TABLE `clusters` DISABLE KEYS */;
-INSERT INTO `clusters` VALUES (1,'cluster 1',0,0,0,0,20,"",'North Scotland',0,0),(2,'cluster 2',0,0,0,0,20,"",'South Scotland', 0,0),(3,'cluster 3',0,0,0,0,20, "","North West England",0,0),(4,'cluster 4',0,0,0,0,20, "","North East England",0,0),(5,'cluster 5',0,0,0,0,20, "","Yorkshire",0,0),(6,'cluster 6',0,0,0,0,20, "","North Wales",0,0),(7,'cluster 7',0,0,0,0,20,"", "South Wales",0,0),(8,'cluster 8',0,0,0,0,20,"","West Midlands"),(9,'cluster 9',0,0,0,0,20, "","East Midlands",0,0),(10,'cluster 10',0,0,0,0,20, "", "East England",0,0),(11,'cluster 11',0,0,0,0,20, '','South West England',0,0),(12,'cluster 12',0,0,0,0,20, "", "South England",0,0),(13,'cluster 13',0,0,0,0,20,"","London",0,0),(14,'cluster 14',0,0,0,0,20,"","South East England",0,0);
+INSERT INTO `clusters` VALUES (1,'cluster 1',0,0,0,0,20,"",'North Scotland',0,0),(2,'cluster 2',0,0,0,0,20,"",'South Scotland', 0,0),(3,'cluster 3',0,0,0,0,20, "","North West England",0,0),(4,'cluster 4',0,0,0,0,20, "","North East England",0,0),(5,'cluster 5',0,0,0,0,20, "","Yorkshire",0,0),(6,'cluster 6',0,0,0,0,20, "","North Wales",0,0),(7,'cluster 7',0,0,0,0,20,"", "South Wales",0,0),(8,'cluster 8',0,0,0,0,20,"","West Midlands",0,0),(9,'cluster 9',0,0,0,0,20, "","East Midlands",0,0),(10,'cluster 10',0,0,0,0,20, "", "East England",0,0),(11,'cluster 11',0,0,0,0,20, '','South West England',0,0),(12,'cluster 12',0,0,0,0,20, "", "South England",0,0),(13,'cluster 13',0,0,0,0,20,"","London",0,0),(14,'cluster 14',0,0,0,0,20,"","South East England",0,0);
 /*!40000 ALTER TABLE `clusters` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

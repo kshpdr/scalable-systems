@@ -29,7 +29,7 @@ router.get(
       const updatedJobs = scheduleJobs(reg_array, fakejobs, fakeclusters)
 
       const jsonData = JSON.stringify(updatedJobs);
-      console.log(jsonData);
+      // console.log(jsonData);
       res.send(jsonData); // The JSON object from the API call
     })
     .catch((error) => {

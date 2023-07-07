@@ -8,7 +8,7 @@ export interface job {
     stoppable: boolean;
     time: number;
     regionname: String;
-    timewindow: [Date, Date];   //array of assigned time slots [from, to]
+    timewindow: [Date, Date][];   //array of assigned time slots [from, to]
     serverUsage: number;        //number of servers that should be used by the job
 }
 
@@ -43,15 +43,38 @@ export function scheduleJobs(regions: region[], jobs: job[], clusters: cluster[]
     jobs = jobs.sort(compareJobsByDeadline)
 
     jobs.forEach((job) => {
-        let slotsNeeded: number = job.time / 1800;
-        var slotsRest = slotsNeeded;
-        let bestRegion: region | undefined = undefined;
-        let bestTimeslot: forecastdetails | undefined = undefined;
+        let slotsNeeded: number = Math.ceil(job.time / 1800);
+        let slotsUsed: number = 0;
+        // let bestRegion: region | undefined = undefined;
+        // let bestTimeslot: forecastdetails | undefined = undefined;
         //var i = 0
+        console.log(sortedList.length)
+        console.log(slotsNeeded)
+        // job.regionname = "England"
+        // job.timewindow = [new Date(Date.now() + (25 * 30 * 60 * 1000)), new Date(Date.now() + (25 * 60 * 60 * 1000))]
+        var placeholderRegion: String = '';
 
-        job.regionname = "England"
-        job.timewindow = [new Date(Date.now() + (25 * 30 * 60 * 1000)), new Date(Date.now() + (25 * 60 * 60 * 1000))]
-
+        for(let i = 0; i<sortedList.length; i++){
+            const actualSlot: [region, forecastdetails] = [sortedList[i][0], sortedList[i][1]]
+            if(slotsUsed == slotsNeeded ){
+                console.log("first if")
+                break;
+            }
+            if(job.timewindow.length === 0 && sortedList[i][1].available_servers >= job.serverUsage){
+                placeholderRegion = actualSlot[0].shortname
+                console.log("second if")
+            }
+            if(placeholderRegion != actualSlot[0].shortname || sortedList[i][1].available_servers >= job.serverUsage){
+                console.log("third if")
+                continue;
+            }
+            job.regionname = actualSlot[0].shortname
+            job.timewindow.push([actualSlot[1].from, actualSlot[1].to])
+            sortedList[i][1].available_servers -= job.serverUsage
+            console.log("Timeslot an Position " + i + " " + sortedList[i][1])
+            slotsUsed++
+        }
+        console.log("Job after for loop: " + job)
 
         // for (let i=0; i<sortedList.length; i++){
         //     const firstSlot: [region, forecastdetails] = [sortedList[i][0], sortedList[i][1]]
