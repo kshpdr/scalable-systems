@@ -58,7 +58,7 @@ router.get(
 router.get(
     "/all",
     asyncHandler(async (req: any, res: any) => {
-      res.send({ message: 'WIP: a route to show all the clusters' });
+      //res.send({ message: 'WIP: a route to show all the clusters' });
       const clusters = await getClusters();
       
       if (!Array.isArray(clusters) || !clusters.length) {
