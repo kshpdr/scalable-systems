@@ -56,6 +56,12 @@ export function scheduleJobs(regions: region[], jobs: job[], clusters: cluster[]
 
         for(let i = 0; i<sortedList.length; i++){
             const actualSlot: [region, forecastdetails] = [sortedList[i][0], sortedList[i][1]]
+            // console.log("USed: " + slotsUsed)
+            // console.log(placeholderRegion)
+
+            if(slotsUsed === 96){
+                break
+            }
             if(slotsUsed == slotsNeeded ){
                 console.log("first if")
                 break;
@@ -64,7 +70,7 @@ export function scheduleJobs(regions: region[], jobs: job[], clusters: cluster[]
                 placeholderRegion = actualSlot[0].shortname
                 console.log("second if")
             }
-            if(placeholderRegion != actualSlot[0].shortname || sortedList[i][1].available_servers >= job.serverUsage){
+            if(placeholderRegion != actualSlot[0].shortname || sortedList[i][1].available_servers < job.serverUsage){
                 console.log("third if")
                 continue;
             }
