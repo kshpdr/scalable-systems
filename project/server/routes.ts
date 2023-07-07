@@ -5,7 +5,7 @@ import { externalApiCallforScheduling } from './usecase2/extApi_02';
 import { Clusters } from './db/models/clusters'
 import { getClusters, createCluster } from './db/helpers';
 import { stringify } from 'querystring';
-import { scheduleJobs } from './usecase2/scheduler';
+import { job, scheduleJobs } from './usecase2/scheduler';
 import { fakeclusters, fakejobs } from './usecase2/fakejobs';
 import { region } from './usecase2/extApi_02';
 import { cluster } from './interfaces';
@@ -25,8 +25,11 @@ router.get(
       //scheduler(req.body, reg_array)
       // do some scheduling 
       //turn result into json
-      const clusters = getClusters()
-      const updatedJobs = scheduleJobs(reg_array, fakejobs, fakeclusters)
+      const jsonJobs = req.body
+      const jobArr: job[] = JSON.parse(jsonJobs)
+      const clusters = JSON.stringify(getClusters())
+      const clustersArr: cluster[] = JSON.parse(clusters)
+      const updatedJobs = scheduleJobs(reg_array, jobArr, clustersArr)
 
       const jsonData = JSON.stringify(updatedJobs);
       // console.log(jsonData);
