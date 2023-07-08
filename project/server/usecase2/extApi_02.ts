@@ -60,8 +60,8 @@ export async function externalApiCallforScheduling(path:String) {
                     index: jsonData['data'][i]['regions'][r]['intensity']['index'],
                     available_servers: servernum
                 }
-                console.log(jsonData['data'][i]['regions'][r]['intensity']['forecast']);
-                console.log(jsonData['data'][i]['regions'][r]['intensity']['index']);
+                // console.log(jsonData['data'][i]['regions'][r]['intensity']['forecast']);
+                // console.log(jsonData['data'][i]['regions'][r]['intensity']['index']);
 
                 region_arr[r].forecast.push(n_detail)
 
