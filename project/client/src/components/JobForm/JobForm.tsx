@@ -13,7 +13,7 @@ interface JobFormProps {
 }
 
 
-const JobForm: FC<JobFormProps> = ({ onSubmit }) => {
+const JobForm: FC<JobFormProps> = ({ addJob }) => {
   const [name, setName] = useState('');
   const [deadline, setDeadline] = useState(''); 
   const [stoppable, setStoppable] = useState(''); 
@@ -26,6 +26,18 @@ const JobForm: FC<JobFormProps> = ({ onSubmit }) => {
     const job = { name, stoppable, deadline, time, numservers };
 
     onSubmit(job);
+  };
+
+  const handleAddJob = () => {
+    const job = { name, stoppable, deadline, time, numservers };
+
+    addJob(job);
+
+    setName('');
+    setDeadline('');
+    setStoppable('');
+    setTime('');
+    setNumServers('');
   };
 
   const handleNameChanged = (event: { target: { value: SetStateAction<string>; }; }) => {
@@ -51,41 +63,41 @@ const JobForm: FC<JobFormProps> = ({ onSubmit }) => {
   
   return (
     <div>
-<form onSubmit={handleSubmit}>
-  <div className='form-group'>
-      <label>Name:</label>
-      <input type="text" className='form-control' value={name} onChange={handleNameChanged}/>
-  </div>
+      <form onSubmit={handleSubmit}>
+        <div className='form-group'>
+            <label>Name:</label>
+            <input type="text" className='form-control' value={name} onChange={handleNameChanged}/>
+        </div>
 
-  <div className='form-group'>
-    <label>Deadline:</label>
-    <input type="date" className='form-control' value={deadline} onChange={handleDeadlineChanged} />
-  </div>
+        <div className='form-group'>
+          <label>Deadline:</label>
+          <input type="date" className='form-control' value={deadline} onChange={handleDeadlineChanged} />
+        </div>
 
-  <div className='form-group'>
-    <label>
-      Stoppable:
-    </label>
-    <br></br>
-    <input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> Yes 
-    <br></br>
-    <input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> No 
-  </div>
+        <div className='form-group'>
+          <label>
+            Stoppable:
+          </label>
+          <br></br>
+          <input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> Yes 
+          <br></br>
+          <input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> No 
+        </div>
 
-  <div className='form-group'>
-    <label>Time (enter in seconds):</label>
-    <input type="text" value={time} className='form-control' onChange={handleTimeChanged} /> 
-  </div>
+        <div className='form-group'>
+          <label>Time (enter in seconds):</label>
+          <input type="text" value={time} className='form-control' onChange={handleTimeChanged} /> 
+        </div>
 
-  <div className='form-group'>
-    <label>Number of Servers:</label>
-    <input type="text" value={numservers} className='form-control' onChange={handleNumServesChanged} /> 
-  </div>
-</form>
-<br></br>
-<button type="button" style={{marginRight: 20}} className="btn btn-light">Add</button>
-<button type="button" className="btn btn-primary">Submit</button>
-</div>
+        <div className='form-group'>
+          <label>Number of Servers:</label>
+          <input type="text" value={numservers} className='form-control' onChange={handleNumServesChanged} /> 
+        </div>
+      </form>
+      <br></br>
+      <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob}>Add</button>
+      <button type="button" className="btn btn-primary">Submit</button>
+    </div>
   );
 };
 
