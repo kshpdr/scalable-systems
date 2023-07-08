@@ -9,6 +9,7 @@ import { job, scheduleJobs } from './usecase2/scheduler';
 import { fakeclusters, fakejobs } from './usecase2/fakejobs';
 import { region } from './usecase2/extApi_02';
 import { cluster } from './interfaces';
+import { jobsParser } from './usecase2/helpers';
 const router = express.Router();
 
 
@@ -26,10 +27,9 @@ router.get(
       // do some scheduling 
       //turn result into json
       const jsonJobs = req.body
-      const jobArr: job[] = JSON.parse(jsonJobs)
-      const clusters = JSON.stringify(getClusters())
-      const clustersArr: cluster[] = JSON.parse(clusters)
-      const updatedJobs = scheduleJobs(reg_array, jobArr, clustersArr)
+      const jobArr: job[] = jobsParser(jsonJobs)
+      
+      const updatedJobs = scheduleJobs(reg_array, jobArr)
 
       const jsonData = JSON.stringify(updatedJobs);
       // console.log(jsonData);

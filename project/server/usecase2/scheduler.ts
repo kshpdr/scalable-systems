@@ -38,7 +38,7 @@ function compareJobsByDeadline(job1: job, job2: job): number {
     return deadlineDiff1 - deadlineDiff2;
     }
 
-export function scheduleJobs(regions: region[], jobs: job[], clusters: cluster[]): job[] {
+export function scheduleJobs(regions: region[], jobs: job[]): job[] {
     const sortedList: [region, forecastdetails][] = regsorter(regions);
     jobs = jobs.sort(compareJobsByDeadline)
 
@@ -82,37 +82,6 @@ export function scheduleJobs(regions: region[], jobs: job[], clusters: cluster[]
         }
         console.log("Job after for loop: " + job)
 
-        // for (let i=0; i<sortedList.length; i++){
-        //     const firstSlot: [region, forecastdetails] = [sortedList[i][0], sortedList[i][1]]
-        //     console.log(firstSlot[1].from)
-        //     console.log(i + 'i in loop')
-        //     if(firstSlot[1].available_servers >= job.serverUsage){
-        //         job.timewindow.push(firstSlot[1].from, firstSlot[1].to)
-        //         if(job.regionnames.indexOf(sortedList[i][0].shortname) === -1) {
-        //             job.regionnames.push(sortedList[i][0].shortname);
-        //         }
-        //         console.log(slotsRest)
-        //         slotsRest--;
-        //         sortedList[i][1].available_servers -= job.serverUsage;
-        //         // if (slotsNeeded > 1) {
-        //         //     for (let j=i; j<sortedList.length; j++) {
-        //         //         if(slotsRest == 0){break}
-        //         //         const currentSlot :[region, forecastdetails] = [sortedList[j][0], sortedList[j][1]]
-        //         //         if(sortedList[j][0].id == firstSlot[0].id && currentSlot[1].available_servers >= job.serverUsage){
-        //         //             sortedList[j][1].available_servers -= job.serverUsage;
-        //         //             job.timewindow.push(currentSlot[1].from, currentSlot[1].to);
-        //         //             if(job.regionnames.indexOf(sortedList[j][0].shortname) === -1) {
-        //         //                 job.regionnames.push(sortedList[j][0].shortname);
-        //         //             }
-        //         //             slotsRest--;
-        //         //         }
-        //         //     }
-        //         // }
-        //         // break; 
-        //     }
-        //     break;
-            
-        // }
     })
     return jobs;
 }
