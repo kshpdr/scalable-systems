@@ -23,7 +23,10 @@ const App: React.FC = () => {
     powerLow: string;
     energyConsumption: string;
     numServers: string;
+    numCores: string;
+    numTBsRam: string;
     location: string;
+    region: string;
   }) => {
     try {
       const response = await fetch(`http://${import.meta.env.VITE_REACT_APP_API_BASE_URL}/addCluster`, {
