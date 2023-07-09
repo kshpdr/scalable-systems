@@ -26,11 +26,11 @@ router.get(
     const jobArr: job[] = []
     for(let i=0; i<Object.keys(jsonJobs).length; i++){
       const newJob: job = {
-        name: jsonJobs.name,
-        deadline: jsonJobs.deadline,
-        stoppable: jsonJobs.stoppable,
-        time: jsonJobs.time,
-        serverUsage: jsonJobs.numservers,
+        name: jsonJobs.jobs[i].name,
+        deadline: jsonJobs.jobs[i].deadline,
+        stoppable: jsonJobs.jobs[i].stoppable,
+        time: jsonJobs.jobs[i].time,
+        serverUsage: jsonJobs.jobs[i].numservers,
         regionname: '',
         timewindow: []
       }
