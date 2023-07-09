@@ -10,15 +10,33 @@ import { fakeclusters, fakejobs } from './usecase2/fakejobs';
 import { region } from './usecase2/extApi_02';
 import { cluster } from './interfaces';
 import { jobsParser } from './usecase2/helpers';
+var bodyParser = require('body-parser')
 const router = express.Router();
 
+var jsonParser = bodyParser.json()
 
 router.get(
-  "/forecastCall",
+  "/forecastCall", jsonParser,
   asyncHandler(async (req: any, res: any) => {
-    
+    console.log(req.body)
     const event = new Date();
     event.toISOString()
+
+    const jsonJobs = req.body
+    const jobArr: job[] = []
+    for(let i=0; i<Object.keys(jsonJobs).length; i++){
+      const newJob: job = {
+        name: jsonJobs.name,
+        deadline: jsonJobs.deadline,
+        stoppable: jsonJobs.stoppable,
+        time: jsonJobs.time,
+        serverUsage: jsonJobs.numservers,
+        regionname: '',
+        timewindow: []
+      }
+      console.log(newJob)
+      jobArr.push(newJob)
+    }
 
     externalApiCallforScheduling('/regional/intensity/' + event.toISOString() + '/fw48h')
     .then((reg_array) => { //users sends all the jobs in body of get call req.body
@@ -26,8 +44,6 @@ router.get(
       //scheduler(req.body, reg_array)
       // do some scheduling 
       //turn result into json
-      const jsonJobs = req.body
-      const jobArr: job[] = jobsParser(jsonJobs)
       
       const updatedJobs = scheduleJobs(reg_array, jobArr)
 

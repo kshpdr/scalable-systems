@@ -43,6 +43,7 @@ export function scheduleJobs(regions: region[], jobs: job[]): job[] {
     jobs = jobs.sort(compareJobsByDeadline)
 
     jobs.forEach((job) => {
+        console.log("JOB IN SCHEDULER: " + job)
         let slotsNeeded: number = Math.ceil(job.time / 1800);
         let slotsUsed: number = 0;
         // let bestRegion: region | undefined = undefined;
