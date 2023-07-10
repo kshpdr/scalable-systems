@@ -32,8 +32,12 @@ function regsorter(regions: region[]): [region, forecastdetails][] {
 
 function compareJobsByDeadline(job1: job, job2: job): number {
     const now = new Date();
-    const deadlineDiff1 = Math.abs(now.getTime() - job1.deadline.getTime());
-    const deadlineDiff2 = Math.abs(now.getTime() - job2.deadline.getTime());
+    const job1deadline = new Date(job1.deadline);
+    const job2deadline = new Date(job2.deadline);
+    const deadlineDiff1 = Math.abs(now.getTime() - job1deadline.getTime());
+    const deadlineDiff2 = Math.abs(now.getTime() - job2deadline.getTime());
+    //const deadlineDiff1 = Math.abs(now.getTime() - job1.deadline.getTime());
+    //const deadlineDiff2 = Math.abs(now.getTime() - job2.deadline.getTime());
     
     return deadlineDiff1 - deadlineDiff2;
     }
