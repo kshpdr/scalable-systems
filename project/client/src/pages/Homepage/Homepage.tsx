@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Content, Button } from './Homepage.styles';
 import { useHistory } from "react-router-dom";
 import dcs from "../../images/datacenters.jpg"

@@ -8,7 +8,7 @@ export interface job {
     stoppable: boolean;
     time: number;
     regionname: String;
-    timewindow: [Date, Date];   //array of assigned time slots [from, to]
+    timewindow: [Date, Date][];   //array of assigned time slots [from, to]
     serverUsage: number;        //number of servers that should be used by the job
 }
 
@@ -32,58 +32,61 @@ function regsorter(regions: region[]): [region, forecastdetails][] {
 
 function compareJobsByDeadline(job1: job, job2: job): number {
     const now = new Date();
-    const deadlineDiff1 = Math.abs(now.getTime() - job1.deadline.getTime());
-    const deadlineDiff2 = Math.abs(now.getTime() - job2.deadline.getTime());
+    const job1deadline = new Date(job1.deadline);
+    const job2deadline = new Date(job2.deadline);
+    const deadlineDiff1 = Math.abs(now.getTime() - job1deadline.getTime());
+    const deadlineDiff2 = Math.abs(now.getTime() - job2deadline.getTime());
+    //const deadlineDiff1 = Math.abs(now.getTime() - job1.deadline.getTime());
+    //const deadlineDiff2 = Math.abs(now.getTime() - job2.deadline.getTime());
     
     return deadlineDiff1 - deadlineDiff2;
     }
 
-export function scheduleJobs(regions: region[], jobs: job[], clusters: cluster[]): job[] {
+export function scheduleJobs(regions: region[], jobs: job[]): job[] {
     const sortedList: [region, forecastdetails][] = regsorter(regions);
     jobs = jobs.sort(compareJobsByDeadline)
 
     jobs.forEach((job) => {
-        let slotsNeeded: number = job.time / 1800;
-        var slotsRest = slotsNeeded;
-        let bestRegion: region | undefined = undefined;
-        let bestTimeslot: forecastdetails | undefined = undefined;
+        console.log("JOB IN SCHEDULER: " + job)
+        let slotsNeeded: number = Math.ceil(job.time / 1800);
+        let slotsUsed: number = 0;
+        // let bestRegion: region | undefined = undefined;
+        // let bestTimeslot: forecastdetails | undefined = undefined;
         //var i = 0
+        console.log(sortedList.length)
+        console.log(slotsNeeded)
+        // job.regionname = "England"
+        // job.timewindow = [new Date(Date.now() + (25 * 30 * 60 * 1000)), new Date(Date.now() + (25 * 60 * 60 * 1000))]
+        var placeholderRegion: String = '';
 
-        job.regionname = "England"
-        job.timewindow = [new Date(Date.now() + (25 * 30 * 60 * 1000)), new Date(Date.now() + (25 * 60 * 60 * 1000))]
+        for(let i = 0; i<sortedList.length; i++){
+            const actualSlot: [region, forecastdetails] = [sortedList[i][0], sortedList[i][1]]
+            // console.log("USed: " + slotsUsed)
+            // console.log(placeholderRegion)
 
+            if(slotsUsed === 96){
+                break
+            }
+            if(slotsUsed == slotsNeeded ){
+                console.log("first if")
+                break;
+            }
+            if(job.timewindow.length === 0 && sortedList[i][1].available_servers >= job.serverUsage){
+                placeholderRegion = actualSlot[0].shortname
+                console.log("second if")
+            }
+            if(placeholderRegion != actualSlot[0].shortname || sortedList[i][1].available_servers < job.serverUsage){
+                console.log("third if")
+                continue;
+            }
+            job.regionname = actualSlot[0].shortname
+            job.timewindow.push([actualSlot[1].from, actualSlot[1].to])
+            sortedList[i][1].available_servers -= job.serverUsage
+            console.log("Timeslot an Position " + i + " " + sortedList[i][1])
+            slotsUsed++
+        }
+        console.log("Job after for loop: " + job)
 
-        // for (let i=0; i<sortedList.length; i++){
-        //     const firstSlot: [region, forecastdetails] = [sortedList[i][0], sortedList[i][1]]
-        //     console.log(firstSlot[1].from)
-        //     console.log(i + 'i in loop')
-        //     if(firstSlot[1].available_servers >= job.serverUsage){
-        //         job.timewindow.push(firstSlot[1].from, firstSlot[1].to)
-        //         if(job.regionnames.indexOf(sortedList[i][0].shortname) === -1) {
-        //             job.regionnames.push(sortedList[i][0].shortname);
-        //         }
-        //         console.log(slotsRest)
-        //         slotsRest--;
-        //         sortedList[i][1].available_servers -= job.serverUsage;
-        //         // if (slotsNeeded > 1) {
-        //         //     for (let j=i; j<sortedList.length; j++) {
-        //         //         if(slotsRest == 0){break}
-        //         //         const currentSlot :[region, forecastdetails] = [sortedList[j][0], sortedList[j][1]]
-        //         //         if(sortedList[j][0].id == firstSlot[0].id && currentSlot[1].available_servers >= job.serverUsage){
-        //         //             sortedList[j][1].available_servers -= job.serverUsage;
-        //         //             job.timewindow.push(currentSlot[1].from, currentSlot[1].to);
-        //         //             if(job.regionnames.indexOf(sortedList[j][0].shortname) === -1) {
-        //         //                 job.regionnames.push(sortedList[j][0].shortname);
-        //         //             }
-        //         //             slotsRest--;
-        //         //         }
-        //         //     }
-        //         // }
-        //         // break; 
-        //     }
-        //     break;
-            
-        // }
     })
     return jobs;
 }

@@ -24,7 +24,7 @@ conn.connect( (err) => {
 })
 
 export const sequelize = new Sequelize(db_data.database, db_data.user, db_data.password, {
-    host: 'localhost',
+    host: '127.0.0.1',
     dialect: 'mysql'
 }) 
 

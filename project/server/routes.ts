@@ -5,19 +5,38 @@ import { externalApiCallforScheduling } from './usecase2/extApi_02';
 import { Clusters } from './db/models/clusters'
 import { getClusters, createCluster } from './db/helpers';
 import { stringify } from 'querystring';
-import { scheduleJobs } from './usecase2/scheduler';
+import { job, scheduleJobs } from './usecase2/scheduler';
 import { fakeclusters, fakejobs } from './usecase2/fakejobs';
 import { region } from './usecase2/extApi_02';
 import { cluster } from './interfaces';
+import { jobsParser } from './usecase2/helpers';
+var bodyParser = require('body-parser')
 const router = express.Router();
 
+var jsonParser = bodyParser.json()
 
-router.get(
-  "/forecastCall",
+router.post(
+  "/forecastCall", jsonParser,
   asyncHandler(async (req: any, res: any) => {
-    
+    console.log("Body: ", req.body)
     const event = new Date();
     event.toISOString()
+
+    const jsonJobs = req.body
+    const jobArr: job[] = []
+    for(let i=0; i<jsonJobs['jobs'].length; i++){
+      const newJob: job = {
+        name: jsonJobs.jobs[i].name,
+        deadline: jsonJobs.jobs[i].deadline,
+        stoppable: jsonJobs.jobs[i].stoppable,
+        time: jsonJobs.jobs[i].time,
+        serverUsage: jsonJobs.jobs[i].numservers,
+        regionname: '',
+        timewindow: []
+      }
+      console.log(newJob)
+      jobArr.push(newJob)
+    }
 
     externalApiCallforScheduling('/regional/intensity/' + event.toISOString() + '/fw48h')
     .then((reg_array) => { //users sends all the jobs in body of get call req.body
@@ -25,11 +44,11 @@ router.get(
       //scheduler(req.body, reg_array)
       // do some scheduling 
       //turn result into json
-      const clusters = getClusters()
-      const updatedJobs = scheduleJobs(reg_array, fakejobs, fakeclusters)
+      
+      const updatedJobs = scheduleJobs(reg_array, jobArr)
 
       const jsonData = JSON.stringify(updatedJobs);
-      console.log(jsonData);
+      // console.log(jsonData);
       res.send(jsonData); // The JSON object from the API call
     })
     .catch((error) => {
@@ -58,12 +77,13 @@ router.get(
 router.get(
     "/all",
     asyncHandler(async (req: any, res: any) => {
-      //res.send({ message: 'WIP: a route to show all the clusters' });
+      // res.send({ message: 'WIP: a route to show all the clusters' });
       const clusters = await getClusters();
       
       if (!Array.isArray(clusters) || !clusters.length) {
         throw new Error("There are no Cluster");
       } else {
+        // res.send("TEST")
         res.send(clusters);
       }
     })
