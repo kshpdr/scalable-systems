@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Content } from './Homepage.styles';
 
 const App: React.FC = () => {

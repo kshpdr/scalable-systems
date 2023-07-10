@@ -37,7 +37,6 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
           <Th>Ram in TB</Th>
           <Th>Location</Th>
           <Th>Region</Th>
-          <Th>Auslastung</Th>
         </tr>
       </thead>
       <tbody>
@@ -53,7 +52,6 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
             <Td>{cluster.numTBsRam}</Td>
             <Td>{cluster.location}</Td>
             <Td>{cluster.region}</Td>
-            <Td>{cluster.auslastung}</Td>
           </tr>
         ))}
       </tbody>
