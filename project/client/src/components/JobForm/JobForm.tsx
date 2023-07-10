@@ -1,16 +1,32 @@
-import { FC, FormEvent, SetStateAction, useState } from 'react';
+import { FC, SetStateAction, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-interface JobFormProps {
-  jobs: any[];
-  addJob: (job: any) => void;
-  setJobs: (jobs: any[]) => void;
-  setScheduledJobs: (jobs: any[]) => void;
+interface Job {
+  name: string;
+  deadline: string;
+  stoppable: string;
+  time: string;
+  numservers: string;
 }
 
+interface ScheduledJob {
+  name: string;
+  deadline: string;
+  stoppable: string;
+  time: number;
+  regionname: string;
+  timewindow: string[][];
+  serverUsage: number;
+}
 
-const JobForm: FC<JobFormProps> = ({ jobs, addJob, setJobs, setScheduledJobs }) => {
+interface JobFormProps {
+  jobs: Job[];
+  addJob: (job: Job) => void;
+  setJobs: (jobs: Job[]) => void;
+  setScheduledJobs: (jobs: ScheduledJob[]) => void;
+}
+
+const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
   const [name, setName] = useState('');
   const [deadline, setDeadline] = useState(''); 
   const [stoppable, setStoppable] = useState(''); 
@@ -25,7 +41,6 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setJobs, setScheduledJobs }) 
     });
     const scheduledJobs = await response.json();
     setScheduledJobs(scheduledJobs);
-    // setJobs([]);
   };
 
   const handleAddJob = () => {

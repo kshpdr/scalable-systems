@@ -2,18 +2,13 @@ import { FC } from 'react';
 import { Th, Td, Table } from './JobTable.styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-interface TimedWindow {
-  start: string;
-  end: string;
-}
-
 interface Job {
   name: string;
   deadline: string;
   stoppable: string;
   time: number;
   regionname: string;
-  timewindow: TimedWindow[];
+  timewindow: string[][];
   serverUsage: number;
 }
 
@@ -24,9 +19,16 @@ interface JobTableProps {
 const JobTable: FC<JobTableProps> = ({ jobs }) => {
   
   const formatDate = (dateString: string) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: 'numeric', 
+        minute: 'numeric' 
+    };
+
     return new Date(dateString).toLocaleDateString("en-GB", options);
-  };
+};
 
   const formatTimeWindows = (timewindow: string[][]) => {
     return (

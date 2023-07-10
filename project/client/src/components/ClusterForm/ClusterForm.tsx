@@ -37,26 +37,6 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
     onSubmit(cluster);
   };
 
-  const handleNameChanged = (event: { target: { value: SetStateAction<string>; }; }) => {
-    setName(event.target.value)
-  }; 
-
-  const handleDeadlineChanged = (e: { target: { value: SetStateAction<string>; }; }) => {
-    setDeadline(e.target.value) 
-  };
-
-  const handleStoppableChanged = (e: { target: { value: string | ((prevState: string) => string); }; }) => {
-    setStoppable(e.target.value) 
-  };
-
-  const handleTimeChanged = (e: { target: { value: SetStateAction<string>; }; }) => {
-    setTime(e.target.value) 
-  }; 
-
-  const handleNumServesChanged = (e: { target: { value: SetStateAction<string>; }; }) => {
-    setNumServers(e.target.value) 
-  }; 
-
   
   return (
     <Form onSubmit={handleSubmit}>

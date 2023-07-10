@@ -4,11 +4,29 @@ import JobForm from '../../components/JobForm/JobForm';
 import JobTable from '../../components/JobTable/JobTable';
 import JobTile from '../../components/JobTile';
 
-const Jobs: React.FC = () => {
-  const [jobs, setJobs] = useState([]);
-  const [scheduledJobs, setScheduledJobs] = useState([]);
+interface Job {
+  name: string;
+  deadline: string;
+  stoppable: string;
+  time: string;
+  numservers: string;
+}
 
-  const addJob = (job) => {
+interface ScheduledJob {
+  name: string;
+  deadline: string;
+  stoppable: string;
+  time: number;
+  regionname: string;
+  timewindow: string[][];
+  serverUsage: number;
+}
+
+const Jobs: React.FC = () => {
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [scheduledJobs, setScheduledJobs] = useState<ScheduledJob[]>([]);
+  
+  const addJob = (job: Job) => {
     setJobs(jobs => [...jobs, job]);
   };
   
