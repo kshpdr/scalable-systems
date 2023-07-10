@@ -60,7 +60,7 @@ const JobTable: FC<JobTableProps> = ({ jobs }) => {
             <tr key={index}>
               <Td>{job.name}</Td>
               <Td>{formatDate(job.deadline)}</Td>
-              <Td>{job.stoppable}</Td>
+              <Td>{job.stoppable === "yes" ? "Yes" : "No"}</Td>
               <Td>{job.time}</Td>
               <Td>{job.regionname}</Td>
               <Td>{formatTimeWindows(job.timewindow)}</Td>
