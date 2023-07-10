@@ -25,11 +25,10 @@ const App: React.FC = () => {
     numServers: string;
     numCores: string;
     numTBsRam: string;
-    location: string;
     region: string;
   }) => {
     try {
-      const response = await fetch(`http://${import.meta.env.VITE_REACT_APP_API_BASE_URL}/addCluster`, {
+      const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/addCluster`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,6 +36,8 @@ const App: React.FC = () => {
         body: JSON.stringify(cluster),
       });
       console.log(cluster)
+
+      console.log(response.status, response.statusText)
 
       if (response.ok) {
         fetchClusters(); 

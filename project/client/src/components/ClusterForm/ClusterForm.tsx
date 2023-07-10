@@ -11,7 +11,6 @@ interface ClusterFormProps {
     numServers: string;
     numCores: string;
     numTBsRam: string;
-    location: string;
     region: string;
   }) => void;
 }
@@ -27,7 +26,6 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   const [numCores, setNumCores] = useState('');
   const [numTBsRam, setNumTBsRam] = useState('');
   const [region, setRegion] = useState('');
-  const [location, setLocation] = useState('');
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,7 +46,6 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
       <Input name="numServers" placeholder="Number of Servers" type="number" value={numServers} onChange={(e) => setNumServers(e.target.value)} />
       <Input name="numCores" placeholder="Number of Cores" type="number" value={numCores} onChange={(e) => setNumCores(e.target.value)} />
       <Input name="numGBsRam" placeholder="Number of GBs of Ram" type="number" value={numTBsRam} onChange={(e) => setNumTBsRam(e.target.value)} />
-      <Input name="location" placeholder="Datacenter Location" type={name} value={location} onChange={(e) => setLocation(e.target.value)} />
       <Select name="region" value={region} onChange={(e) => setRegion(e.target.value)}>
         <option value="" disabled hidden >Datacenter Region</option>
         <option value="East England">East England</option>
