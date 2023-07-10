@@ -10,9 +10,24 @@ export const Content = styled.div`
 export const JobsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   align-items: center;
   margin-bottom: 20px;
   flex-wrap: wrap;
+`;
+
+export const FormAndTilesContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+`;
+
+export const TableContainer = styled.div`
+  align-self: center;
+  width: fit-content;
 `;

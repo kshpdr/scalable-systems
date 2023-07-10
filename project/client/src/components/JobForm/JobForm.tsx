@@ -3,29 +3,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 interface JobFormProps {
-  onSubmit: (job: {
-    name: string;
-    deadline: string;
-    stoppable: string;
-    time: string;
-    numservers: string 
-  }) => void;
+  jobs: any[];
+  addJob: (job: any) => void;
+  setJobs: (jobs: any[]) => void;
+  setScheduledJobs: (jobs: any[]) => void;
 }
 
 
-const JobForm: FC<JobFormProps> = ({ addJob }) => {
+const JobForm: FC<JobFormProps> = ({ jobs, addJob, setJobs, setScheduledJobs }) => {
   const [name, setName] = useState('');
   const [deadline, setDeadline] = useState(''); 
   const [stoppable, setStoppable] = useState(''); 
   const [time, setTime] = useState('');
   const [numservers, setNumServers] = useState(''); 
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const job = { name, stoppable, deadline, time, numservers };
-
-    onSubmit(job);
+  const handleFormSubmit = async () => {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/forecastCall`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ "jobs": jobs }),
+    });
+    const scheduledJobs = await response.json();
+    setScheduledJobs(scheduledJobs);
+    // setJobs([]);
   };
 
   const handleAddJob = () => {
@@ -48,8 +48,8 @@ const JobForm: FC<JobFormProps> = ({ addJob }) => {
     setDeadline(e.target.value) 
   };
 
-  const handleStoppableChanged = (e: { target: { value: string | ((prevState: string) => string); }; }) => {
-    setStoppable(e.target.value) 
+  const handleStoppableChanged = (e: { target: { checked: boolean; }; }) => {
+    setStoppable(e.target.checked ? 'yes' : 'no');
   };
 
   const handleTimeChanged = (e: { target: { value: SetStateAction<string>; }; }) => {
@@ -63,7 +63,7 @@ const JobForm: FC<JobFormProps> = ({ addJob }) => {
   
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <div className='form-group'>
             <label>Name:</label>
             <input type="text" className='form-control' value={name} onChange={handleNameChanged}/>
@@ -75,13 +75,8 @@ const JobForm: FC<JobFormProps> = ({ addJob }) => {
         </div>
 
         <div className='form-group'>
-          <label>
-            Stoppable:
-          </label>
-          <br></br>
-          <input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> Yes 
-          <br></br>
-          <input className="form-check-input" type="checkbox" value="" onChange={handleStoppableChanged} /> No 
+          <br/>
+          <input className="form-check-input" type="checkbox" onChange={handleStoppableChanged} /> Stoppable 
         </div>
 
         <div className='form-group'>
@@ -96,7 +91,7 @@ const JobForm: FC<JobFormProps> = ({ addJob }) => {
       </form>
       <br></br>
       <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob}>Add</button>
-      <button type="button" className="btn btn-primary">Submit</button>
+      <button type="button" className="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
     </div>
   );
 };

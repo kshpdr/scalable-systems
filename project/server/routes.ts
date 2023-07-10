@@ -15,10 +15,10 @@ const router = express.Router();
 
 var jsonParser = bodyParser.json()
 
-router.get(
+router.post(
   "/forecastCall", jsonParser,
   asyncHandler(async (req: any, res: any) => {
-    console.log(req.body)
+    console.log("Body: ", req.body)
     const event = new Date();
     event.toISOString()
 

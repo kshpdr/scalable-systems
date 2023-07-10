@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Content, JobsContainer } from './Jobs.styles';
+import { FormAndTilesContainer, TableContainer, JobsContainer, Content } from './Jobs.styles';
 import JobForm from '../../components/JobForm/JobForm';
 import JobTable from '../../components/JobTable/JobTable';
 import JobTile from '../../components/JobTile';
@@ -13,16 +13,20 @@ const Jobs: React.FC = () => {
   };
   
   return (
-    <div>
-      <Content>
-        <JobsContainer>
-          <JobForm addJob={addJob} />
+    <Content>
+      <JobsContainer>
+        <FormAndTilesContainer>
+          <JobForm jobs={jobs} addJob={addJob} setJobs={setJobs} setScheduledJobs={setScheduledJobs} />
           {jobs.map((job, index) => <JobTile key={index} job={job} />)}
-        </JobsContainer>
-        {scheduledJobs.length > 0 && <JobTable jobs={scheduledJobs} />}
-      </Content>
-    </div>
-  );
+        </FormAndTilesContainer>
+      </JobsContainer>
+      {scheduledJobs.length > 0 && 
+        <TableContainer>
+          <JobTable jobs={scheduledJobs} />
+        </TableContainer>
+      }
+    </Content>
+  );  
 }
 
 export default Jobs;
