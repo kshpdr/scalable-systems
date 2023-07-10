@@ -20,13 +20,11 @@ const Navbar: React.FC = () => {
 
   return (  
     <Header>
-      <Title>My CO2 App</Title>
+      <Title onClick={navHome}>My CO2 App</Title>
       <NavList>
         <NavItem onClick={navHome}>Home</NavItem>
         <NavItem onClick={navDCs}>Datacenters</NavItem>
         <NavItem onClick={navJobs}>Jobs</NavItem>
-        <NavItem>About</NavItem>
-        <NavItem>Contact</NavItem>
       </NavList>
     </Header>
   );

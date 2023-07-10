@@ -12,6 +12,7 @@ export const Header = styled.header`
 export const Title = styled.h2`
   margin: 0;
   font-size: 1.5em;
+  cursor: pointer;
 `;
 
 export const NavList = styled.ul`
