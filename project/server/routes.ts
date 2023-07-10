@@ -24,7 +24,7 @@ router.get(
 
     const jsonJobs = req.body
     const jobArr: job[] = []
-    for(let i=0; i<Object.keys(jsonJobs).length; i++){
+    for(let i=0; i<jsonJobs['jobs'].length; i++){
       const newJob: job = {
         name: jsonJobs.jobs[i].name,
         deadline: jsonJobs.jobs[i].deadline,
