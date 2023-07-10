@@ -1,7 +1,7 @@
 import { job } from "./scheduler";
 
-export function jobsParser(input: string){
-    const data = JSON.parse(input)
+export function jobsParser(input: JSON){
+    const data = input
     var jobs: job[] = []
     const jsonLength = Object.keys(data).length
 
