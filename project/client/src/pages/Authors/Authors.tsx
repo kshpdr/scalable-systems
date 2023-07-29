@@ -7,11 +7,11 @@ const Authors: React.FC = () => {
                 <div>
                     <div>
                         <h2>Our Team</h2> <br/>
-                        <h5>Daniil</h5>
-                        <h5>Julius</h5>
-                        <h5>Denis</h5>
-                        <h5>Alex</h5>
-                        <h5>Hans</h5>
+                        <h5>Daniil Alekseev</h5>
+                        <h5>Julius Bergemann</h5>
+                        <h5>Denis Koshelev</h5>
+                        <h5>Alexander Felten</h5>
+                        <h5>Hans Meisel</h5>
                     </div>
                     <br/>
                     <div>
