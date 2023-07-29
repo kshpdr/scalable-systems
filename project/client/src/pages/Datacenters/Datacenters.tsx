@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ClusterForm from '../../components/ClusterForm';
 import ClusterTable from '../../components/ClusterTable';
 import { Content } from './Datacenters.styles';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const App: React.FC = () => {
   const [clusters, setClusters] = useState([]);
@@ -56,6 +58,14 @@ const App: React.FC = () => {
 
   return (
     <div>
+<Popup trigger= {<button className="btn btn-info infobtn"> Info </button>} position="absolute" modal nested>
+                <div>
+                  <h5>Momentan steht der Service nur für Großbritannien zur Verfügung.</h5>
+                  Bitte passen Sie die benötigte Rechenleistung &#40;Number of Servers&#41; 
+                  in der Jobview entsprechend der in Ihrer gewählten Region zur Verfügung stehenden Rechenleistung an, 
+                  um eine Überschreitung der verfügbaren Rechenleistung zu vermeiden. 
+                </div>
+</Popup> 
       <Content>
         <ClusterForm onSubmit={handleSubmit} />
         <ClusterTable clusters={clusters} />
