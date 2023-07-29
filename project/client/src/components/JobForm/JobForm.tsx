@@ -106,7 +106,7 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
         </div>
       </form>
       <br></br>
-      <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob}>Add Workload</button>
+      <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob}>Add Job to Workload</button>
       <button type="button" className="btn btn-primary" onClick={handleFormSubmit}>Schedule Workload</button>
     </div>
   );
