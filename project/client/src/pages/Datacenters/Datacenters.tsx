@@ -62,7 +62,7 @@ const App: React.FC = () => {
         <ClusterForm onSubmit={handleSubmit} />
         <ClusterTable clusters={clusters} />
       </Content>
-      <Popup trigger= {<button className="btn btn-info infobtn"> Info </button>} position="absolute" modal nested>
+      <Popup trigger= {<button className="btn btn-info infobtn"> Info </button>} modal nested>
                     <div>
                       <h5>Momentan steht der Service nur für Großbritannien zur Verfügung.</h5>
                       Bitte passen Sie die benötigte Rechenleistung &#40;Number of Servers&#41; 
