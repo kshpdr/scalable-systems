@@ -29,10 +29,47 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const cluster = { name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, numCores, numTBsRam, region};
-
+  
+    if (
+      Number(powerHigh) < 0 ||
+      Number(powerAverage) < 0 ||
+      Number(powerLow) < 0 ||
+      Number(energyConsumption) < 0 ||
+      Number(numServers) < 0 ||
+      Number(numCores) < 0 ||
+      Number(numTBsRam) < 0
+    ) {
+      alert('All values must be non-negative');
+      return;
+    }
+  
+    const cluster = { 
+      name, 
+      powerHigh, 
+      powerAverage, 
+      powerLow, 
+      energyConsumption, 
+      numServers, 
+      numCores, 
+      numTBsRam, 
+      region
+    };
+  
     onSubmit(cluster);
+  };  
+
+  const isFormComplete = () => {
+    return (
+      name.length > 0 &&
+      powerHigh.length > 0 &&
+      powerAverage.length > 0 &&
+      powerLow.length > 0 &&
+      energyConsumption.length > 0 &&
+      numServers.length > 0 &&
+      numCores.length > 0 &&
+      numTBsRam.length > 0 &&
+      region.length > 0
+    );
   };
 
   
@@ -63,7 +100,7 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
         <option value="West Midlands">West Midlands</option>
         <option value="Yorkshire">Yorkshire</option>
       </Select>
-      <Button type="submit">Submit</Button>
+      <Button type="submit" disabled={!isFormComplete()}>Submit</Button>
     </Form>
   );
 };

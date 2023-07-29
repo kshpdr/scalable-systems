@@ -37,4 +37,9 @@ export const Button = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
 `;
