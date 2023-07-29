@@ -27,7 +27,7 @@ const App: React.FC = () => {
               <Route path="/jobs">
                 <Jobs />
               </Route>
-              <Route path="/authors">
+              <Route path="/about">
                 <Authors />
               </Route>
             </Switch>

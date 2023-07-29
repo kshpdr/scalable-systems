@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
   }
 
   function navAuthors() {
-    history.push('/authors');
+    history.push('/about');
   }
 
   return (  
@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
         <NavItem onClick={navHome}>Home</NavItem>
         <NavItem onClick={navDCs}>Datacenters</NavItem>
         <NavItem onClick={navJobs}>Jobs</NavItem>
-        <NavItem onClick={navAuthors}>Authors</NavItem>
+        <NavItem onClick={navAuthors}>About</NavItem>
       </NavList>
     </Header>
   );
