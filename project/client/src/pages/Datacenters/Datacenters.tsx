@@ -82,7 +82,7 @@ const App: React.FC = () => {
                       Die restlichen Parameter können zukünftige Usecases unterstützen.
                       <br></br>
                       Wir brauchen eine Basismenge von Rechenzentren, um die sauberste Region gewährleisten zu können.
-                    </div>
+                    </div>
       </Popup> 
       <Content>
         <ClusterForm onSubmit={handleSubmit} />
