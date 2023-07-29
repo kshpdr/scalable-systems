@@ -3,6 +3,7 @@ import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import ClipLoader from "react-spinners/ClipLoader"; 
 
 interface Job {
   name: string;
@@ -35,8 +36,10 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
   const [stoppable, setStoppable] = useState(''); 
   const [time, setTime] = useState('');
   const [numservers, setNumServers] = useState(''); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFormSubmit = async () => {
+    setIsLoading(true);
     const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/api/forecastCall`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -44,6 +47,7 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
     });
     const scheduledJobs = await response.json();
     setScheduledJobs(scheduledJobs);
+    setIsLoading(false);
   };
 
   const handleAddJob = () => {
@@ -126,8 +130,9 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
         </div>
       </form>
       <br></br>
-      <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob}>Add Job to Workload</button>
-      <button type="button" className="btn btn-primary" onClick={handleFormSubmit}>Schedule Workload</button>
+      <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob} disabled={isLoading}>Add Job to Workload</button>
+      <button type="button" className="btn btn-primary" onClick={handleFormSubmit} disabled={isLoading}>Schedule Workload</button>
+      <ClipLoader loading={isLoading} size={50} /> {/* your loading spinner here */}
     </div>
   );
 };
