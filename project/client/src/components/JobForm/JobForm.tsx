@@ -1,4 +1,4 @@
-import { FC, SetStateAction, useState } from 'react';
+import { FC, SetStateAction, useState, useEffect } from 'react';
 import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from 'reactjs-popup';
@@ -37,6 +37,11 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
   const [time, setTime] = useState('');
   const [numservers, setNumServers] = useState(''); 
   const [isLoading, setIsLoading] = useState(false);
+  const [disable, setDisable] = useState(true);
+  
+  useEffect(() => {
+    (name && deadline && time && numservers) ? setDisable(false) : setDisable(true);
+  }, [name, deadline, time, numservers]);
 
   const handleFormSubmit = async () => {
     setIsLoading(true);
@@ -54,7 +59,6 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
     const job = { name, stoppable, deadline, time, numservers };
 
     addJob(job);
-
     setName('');
     setDeadline('');
     setStoppable('');
@@ -81,6 +85,10 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
   const handleNumServesChanged = (e: { target: { value: SetStateAction<string>; }; }) => {
     setNumServers(e.target.value) 
   }; 
+
+  function refreshPage() {
+    window.location.reload();
+  }
 
   
   return (
@@ -121,18 +129,20 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
 
         <div className='form-group'>
           <label>Time (enter in seconds):</label>
-          <input type="text" value={time} className='form-control' onChange={handleTimeChanged} /> 
+          <input type="number" value={time} className='form-control' onChange={handleTimeChanged} /> 
         </div>
 
         <div className='form-group'>
           <label>Number of Servers:</label>
-          <input type="text" value={numservers} className='form-control' onChange={handleNumServesChanged} /> 
+          <input type="number" value={numservers} className='form-control' onChange={handleNumServesChanged} /> 
         </div>
       </form>
       <br></br>
       <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob} disabled={isLoading}>Add Job to Workload</button>
       <button type="button" className="btn btn-primary" onClick={handleFormSubmit} disabled={isLoading}>Schedule Workload</button>
-      <ClipLoader loading={isLoading} size={50} /> {/* your loading spinner here */}
+      <ClipLoader loading={isLoading} size={50} />
+      <br></br>
+      <button type="button" className="btn btn-light" onClick={refreshPage}>Clear Workload</button>
     </div>
   );
 };
