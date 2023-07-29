@@ -56,8 +56,25 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
   };
 
   const handleAddJob = () => {
+    const deadlineMoment = moment(deadline);
+    const currentTime = moment();
+    const diffInSeconds = deadlineMoment.diff(currentTime, 'seconds');
+  
+    const parsedTime = parseInt(time, 10);
+    const parsedNumServers = parseInt(numservers, 10);
+  
+    if (parsedTime <= 0 || parsedNumServers <= 0) {
+      alert('Time and Number of Servers must be positive integers');
+      return;
+    }
+    
+    if (Number(time) > diffInSeconds) {
+      alert('Entered time should be less than the remaining time to the deadline');
+      return;
+    }
+  
     const job = { name, stoppable, deadline, time, numservers };
-
+  
     addJob(job);
     setName('');
     setDeadline('');
@@ -65,6 +82,8 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
     setTime('');
     setNumServers('');
   };
+  
+  
 
   const handleNameChanged = (event: { target: { value: SetStateAction<string>; }; }) => {
     setName(event.target.value)
@@ -139,7 +158,7 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
       </form>
       <br></br>
       <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob} disabled={isLoading}>Add Job to Workload</button>
-      <button type="button" className="btn btn-primary" onClick={handleFormSubmit} disabled={isLoading}>Schedule Workload</button>
+      <button type="button" className="btn btn-primary" onClick={handleFormSubmit} disabled={isLoading || jobs.length === 0}>Schedule Workload</button>
       <ClipLoader loading={isLoading} size={50} />
       <br></br>
       <button type="button" className="btn btn-light" onClick={refreshPage}>Clear Workload</button>

@@ -18,6 +18,7 @@ export const StyledButton = styled.button`
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0,0,0,0.15);
   transition: all 0.3s ease;
+  border-radius: 10px;
 
   &:hover {
     transform: scale(1.05);
