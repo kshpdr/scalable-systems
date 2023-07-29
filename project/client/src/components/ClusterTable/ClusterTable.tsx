@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Th, Td, Table, DeleteButton } from './ClusterTable.styles';
+import { Th, Td, Table, DeleteButton, DisabledDeleteButton } from './ClusterTable.styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Cluster {
@@ -17,12 +17,12 @@ interface Cluster {
 
 interface ClusterTableProps {
   clusters: Cluster[];
+  onDelete: (name: string) => void;
 }
 
 const ClusterTable: FC<ClusterTableProps> = ({ clusters, onDelete }) => {
 
   return (
-   
     <Table>
       <thead>
         <tr>
@@ -51,13 +51,16 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters, onDelete }) => {
             <Td>{cluster.numTBsRam}</Td>
             <Td>{cluster.region}</Td>
             <Td>
-              <DeleteButton onClick={() => onDelete(cluster.name)}>Delete</DeleteButton>
+              {cluster.name.toLowerCase().startsWith('cluster') ? (
+                <DisabledDeleteButton onClick={() => alert("You can't delete a basic cluster from the list, only custom ones")}> Delete </DisabledDeleteButton>
+              ) : (
+                <DeleteButton onClick={() => onDelete(cluster.name)}> Delete </DeleteButton>
+              )}
             </Td>
           </tr>
         ))}
       </tbody>
     </Table>
-  
   );
 };
 

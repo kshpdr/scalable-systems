@@ -36,3 +36,12 @@ export const DeleteButton = styled.button`
     outline: none;
   }
 `;
+
+export const DisabledDeleteButton = styled.button`
+  padding: 0.5em 1em;
+  color: #555;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background-color: darkgray;
+  cursor: not-allowed;
+`;
