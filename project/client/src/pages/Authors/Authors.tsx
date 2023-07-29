@@ -1,8 +1,8 @@
-import { Content } from "./Authors.styles"
+import { Content, ContentBlock } from "./Authors.styles"
 
 const Authors: React.FC = () => {
     return(
-        <div>
+        <ContentBlock>
             <Content>
                 <div>
                     <div>
@@ -24,7 +24,7 @@ const Authors: React.FC = () => {
                     </div>
                 </div>
             </Content>
-        </div>
+        </ContentBlock>
     )
 }
 
