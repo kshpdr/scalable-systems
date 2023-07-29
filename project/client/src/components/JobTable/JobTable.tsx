@@ -17,18 +17,18 @@ interface JobTableProps {
 }
 
 const JobTable: FC<JobTableProps> = ({ jobs }) => {
-  
+
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric', 
-        hour: 'numeric', 
-        minute: 'numeric' 
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric'
     };
 
     return new Date(dateString).toLocaleDateString("en-GB", options);
-};
+  };
 
   const formatTimeWindows = (timewindow: string[][]) => {
     return (
@@ -40,8 +40,10 @@ const JobTable: FC<JobTableProps> = ({ jobs }) => {
         ))}
       </ul>
     );
-  };  
-  
+  };
+
+  const scheduleFailedMessage = <div style={{color: 'red', fontStyle: 'italic'}}>Could not be scheduled due to too many servers</div>;
+
   console.log("Jobs: ", jobs)
 
   return (
@@ -54,21 +56,23 @@ const JobTable: FC<JobTableProps> = ({ jobs }) => {
           <Th>Time in seconds</Th>
           <Th>Region</Th>
           <Th>Best time to execute</Th>
-          <Th>Server numbers</Th> 
+          <Th>Server numbers</Th>
         </tr>
       </thead>
       <tbody>
-        {jobs.map((job, index) => (
-            <tr key={index}>
-              <Td>{job.name}</Td>
-              <Td>{formatDate(job.deadline)}</Td>
-              <Td>{job.stoppable === "yes" ? "Yes" : "No"}</Td>
-              <Td>{job.time}</Td>
-              <Td>{job.regionname}</Td>
-              <Td>{formatTimeWindows(job.timewindow)}</Td>
-              <Td>{job.serverUsage}</Td>
-            </tr>
-          ))}
+        {jobs.map((job, index) => {
+              return (
+                  <tr key={index}>
+                      <Td>{job.name}</Td>
+                      <Td>{formatDate(job.deadline)}</Td>
+                      <Td>{job.stoppable === "yes" ? "Yes" : "No"}</Td>
+                      <Td>{job.time}</Td>
+                      <Td>{job.regionname !== "" ? job.regionname : scheduleFailedMessage}</Td>
+                      <Td>{job.timewindow && job.timewindow.length > 0 ? formatTimeWindows(job.timewindow) : scheduleFailedMessage}</Td>
+                      <Td>{job.serverUsage}</Td>
+                  </tr>
+              )
+          })}
       </tbody>
     </Table>
   );
