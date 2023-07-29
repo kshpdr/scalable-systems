@@ -30,7 +30,7 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const cluster = { name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, numCores, numTBsRam, location, region};
+    const cluster = { name, powerHigh, powerAverage, powerLow, energyConsumption, numServers, numCores, numTBsRam, region};
 
     onSubmit(cluster);
   };
