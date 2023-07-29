@@ -73,10 +73,6 @@ const App: React.FC = () => {
 
   return (
     <ContentBlock>
-      <Content>
-        <ClusterForm onSubmit={handleSubmit} />
-        <ClusterTable clusters={clusters} onDelete={handleDelete} />
-      </Content>
       <Popup trigger= {<button className="btn btn-info infobtn"> Info </button>} modal nested>
                     <div>
                       <h5>Momentan steht der Service nur für Großbritannien zur Verfügung.</h5>
@@ -85,6 +81,10 @@ const App: React.FC = () => {
                       um eine Überschreitung der verfügbaren Rechenleistung zu vermeiden. 
                     </div>
       </Popup> 
+      <Content>
+        <ClusterForm onSubmit={handleSubmit} />
+        <ClusterTable clusters={clusters} />
+      </Content>
     </ContentBlock>
   );
 }

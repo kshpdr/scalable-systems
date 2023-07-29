@@ -115,12 +115,13 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
 
 <Popup trigger= {<button className="btn btn-info helpbtn"> Help </button>}  modal nested>
                 <div>
-                  <h4>Geben Sie hier ihre Jobdaten ein. Folgende Parameter werden benötigt:</h4> <br></br>
+                  <h4>Geben Sie hier ihre Jobdaten ein, damit wir Ihre Jobs schedulen können.</h4> <br></br>
+                  <h6>Als Ergebnis erhalten Sie eine Tabelle mit dem optimalen Ausführungszeitpunkt, um möglichst saubere Energie zu benutzen und die zugehörige Region</h6><br></br>
                   <ul>
                     <li><b>Name</b>: Der Name ihres Rechenjobs.</li>
                     <li><b>Deadline</b>: Der Tag bis zu dem ihr Job beendet sein muss </li>
                     <li><b>Stoppable</b>: Kann die Berechnung unterbrochen werden, bitte ankreuzen </li>
-                    <li><b>Time</b>: Die geschätzte Laufzeit ihre Jobs in Sekunden &#40;1h = 1800s&#41; </li>
+                    <li><b>Time</b>: Die geschätzte Laufzeit ihre Jobs in Sekunden &#40;1h = 3600s&#41; </li>
                     <li><b>Number of Servers</b>: Die Anzahl an virtuellen Maschinen, die ihr Job benötigt</li>
                   </ul>
                   <h5>Bitte beachten Sie, alle Felder &#40;bis auf Stoppable&#41; müssen ausgefüllt sein!</h5>
