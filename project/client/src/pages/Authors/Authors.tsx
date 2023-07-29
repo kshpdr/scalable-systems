@@ -16,8 +16,8 @@ const Authors: React.FC = () => {
                     <br/>
                     <div>
                         <h2>Our Project</h2> <br/>
-                        In our project we allow potential users to create computating jobs with properties described in Jobs page in order to sort them 
-                        between computating clusters located in all 15 regions of Great Britain according to actual carbon intensity values in those regions. <br/>
+                        In our project we allow potential users to create computing jobs with properties described in Jobs page in order to sort them 
+                        between computing clusters located in all 15 regions of Great Britain according to actual carbon intensity values in those regions. <br/>
                         Intensity data is fetched from <a href="carbonintensity.org.uk">carbonintensity.org.uk</a> <br/>
                         Jobs are then sorted after their dedline, and our algorithm then assignes timeslots to the jobs according to lowest intensity values for the next 48 hours. <br/>
 
