@@ -1,6 +1,8 @@
 import { FC, SetStateAction, useState, useEffect } from 'react';
 import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 interface Job {
   name: string;
@@ -86,6 +88,24 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
   
   return (
     <div>
+
+<Popup trigger= {<button className="btn btn-info helpbtn"> Help </button>} position="absolute" modal nested>
+                <div>
+                  <h4>Geben Sie hier ihre Jobdaten ein. Folgende Parameter werden benötigt:</h4> <br></br>
+                  <ul>
+                    <li><b>Name</b>: Der Name ihres Rechenjobs.</li>
+                    <li><b>Deadline</b>: Der Tag bis zu dem ihr Job beendet sein muss </li>
+                    <li><b>Stoppable</b>: Kann die Berechnung unterbrochen werden, bitte ankreuzen </li>
+                    <li><b>Time</b>: Die geschätzte Laufzeit ihre Jobs in Sekunden &#40;1h = 1800s&#41; </li>
+                    <li><b>Number of Servers</b>: Die Anzahl an virtuellen Maschinen, die ihr Job benötigt</li>
+                  </ul>
+                  <h5>Bitte beachten Sie, alle Felder &#40;bis auf Stoppable&#41; müssen ausgefüllt sein!</h5>
+                </div>
+</Popup>
+
+
+
+
       <form onSubmit={handleFormSubmit}>
         <div className='form-group'>
             <label>Name:</label>

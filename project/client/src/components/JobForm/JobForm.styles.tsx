@@ -37,4 +37,8 @@ export const Button = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+
+  .helpbtn {
+    margin-bottom: 20px
+  }
 `;
