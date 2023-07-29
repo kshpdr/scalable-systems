@@ -76,9 +76,12 @@ const App: React.FC = () => {
       <Popup trigger= {<button className="btn btn-info infobtn"> Info </button>} modal nested>
                     <div>
                       <h5>Momentan steht der Service nur für Großbritannien zur Verfügung.</h5>
-                      Bitte passen Sie die benötigte Rechenleistung &#40;Number of Servers&#41; 
-                      in der Jobview entsprechend der in Ihrer gewählten Region zur Verfügung stehenden Rechenleistung an, 
-                      um eine Überschreitung der verfügbaren Rechenleistung zu vermeiden. 
+                      Wir benötigen Angaben über die von ihnen verfügbare Rechenleistung &#40;Number of Servers&#41; in einer der 14 Regionen.
+                      Bitte fügen sie entsprechend Datenzentren hinzu.
+                      Dabei sind nur die Region und die Number of Servers relevant für unseren scheduling Algorithmus.
+                      Die restlichen Parameter können zukünftige Usecases unterstützen.
+                      <br></br>
+                      Wir brauchen eine Basismenge von Rechenzentren, um die sauberste Region gewährleisten zu können.
                     </div>
       </Popup> 
       <Content>
