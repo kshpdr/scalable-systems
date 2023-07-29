@@ -18,6 +18,10 @@ const Navbar: React.FC = () => {
     history.push('/Jobs');
   }
 
+  function navAuthors() {
+    history.push('/authors');
+  }
+
   return (  
     <Header>
       <Title onClick={navHome}>My CO2 App</Title>
@@ -25,6 +29,7 @@ const Navbar: React.FC = () => {
         <NavItem onClick={navHome}>Home</NavItem>
         <NavItem onClick={navDCs}>Datacenters</NavItem>
         <NavItem onClick={navJobs}>Jobs</NavItem>
+        <NavItem onClick={navAuthors}>Authors</NavItem>
       </NavList>
     </Header>
   );
