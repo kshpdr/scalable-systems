@@ -5,6 +5,7 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+  margin: 20px;
 `;
 
 export const JobsContainer = styled.div`

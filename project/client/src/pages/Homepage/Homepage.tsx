@@ -1,5 +1,5 @@
 import React from 'react';
-import { Content, StyledButton, Text } from './Homepage.styles';
+import { Content, ContentBlock, StyledButton, Text } from './Homepage.styles';
 import { useHistory } from "react-router-dom";
 import Welcome from '../Welcome';
 
@@ -15,7 +15,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div>
+    <ContentBlock>
       <Welcome/> <br/>
       <Content>
         <StyledButton onClick={navDCs}>
@@ -25,7 +25,7 @@ const App: React.FC = () => {
           <Text>View Your Jobs</Text>
         </StyledButton>
       </Content>
-    </div>
+    </ContentBlock>
    
   );
 }

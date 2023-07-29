@@ -6,6 +6,10 @@ export const Content = styled.div`
   gap: 20px;
 `;
 
+export const ContentBlock = styled.div`
+  margin: 20px;
+`;
+
 export const StyledButton = styled.button`
   display: flex;
   flex-direction: column;
