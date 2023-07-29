@@ -55,11 +55,27 @@ const App: React.FC = () => {
     fetchClusters();
   }, []);
 
+  const handleDelete = async (name: string) => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/deleteCluster/${name}`, {
+          method: 'DELETE',
+        });
+
+        if (response.ok) {
+          fetchClusters();
+        } else {
+            throw new Error('HTTP error ' + response.status);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+  };
+
   return (
     <ContentBlock>
       <Content>
         <ClusterForm onSubmit={handleSubmit} />
-        <ClusterTable clusters={clusters} />
+        <ClusterTable clusters={clusters} onDelete={handleDelete} />
       </Content>
       <Popup trigger= {<button className="btn btn-info infobtn"> Info </button>} modal nested>
                     <div>

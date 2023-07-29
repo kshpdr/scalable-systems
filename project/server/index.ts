@@ -60,6 +60,29 @@ app.post('/addCluster', async (req, res) => {
     }
   });  
 
+
+app.delete('/deleteCluster/:name', async (req, res) => {
+    const name = req.params.name;
+    try {
+        const deletedCluster = await Clusters.destroy({
+            where: {
+                name: name
+            }
+        });
+
+        if (deletedCluster) {
+            res.status(200).send({ message: 'Cluster deleted successfully.' });
+        } else {
+            res.status(404).send({ message: 'Cluster not found.' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send({ error: 'Failed to delete cluster' });
+    }
+});
+
+  
+
 // app.get('*', (req, res) =>{
 //     res.sendFile(path.join(clientBuildPath, 'index.html'));
 // });

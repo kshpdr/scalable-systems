@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Th, Td, Table } from './ClusterTable.styles';
+import { Th, Td, Table, DeleteButton } from './ClusterTable.styles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface Cluster {
@@ -19,7 +19,7 @@ interface ClusterTableProps {
   clusters: Cluster[];
 }
 
-const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
+const ClusterTable: FC<ClusterTableProps> = ({ clusters, onDelete }) => {
 
   return (
    
@@ -35,6 +35,7 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
           <Th>Cores</Th>
           <Th>Ram in TB</Th>
           <Th>Region</Th>
+          <Th>Actions</Th>
         </tr>
       </thead>
       <tbody>
@@ -49,6 +50,9 @@ const ClusterTable: FC<ClusterTableProps> = ({ clusters }) => {
             <Td>{cluster.numCores}</Td>
             <Td>{cluster.numTBsRam}</Td>
             <Td>{cluster.region}</Td>
+            <Td>
+              <DeleteButton onClick={() => onDelete(cluster.name)}>Delete</DeleteButton>
+            </Td>
           </tr>
         ))}
       </tbody>
