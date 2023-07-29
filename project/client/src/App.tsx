@@ -7,6 +7,7 @@ import Datacenters from './pages/Datacenters/Datacenters';
 import Jobs from './pages/Jobs/Jobs';
 import { Layout } from './components/Layout/Layout.styles';
 import { Content } from './pages/Datacenters/Datacenters.styles';
+import Authors from './pages/Authors/Authors';
 
 const App: React.FC = () => {
   return (
@@ -14,7 +15,7 @@ const App: React.FC = () => {
       <div>
         <Navbar />
         <Layout>
-          <Welcome />
+          
           <Content>
             <Switch>
               <Route exact path="/">
@@ -25,6 +26,9 @@ const App: React.FC = () => {
               </Route>
               <Route path="/jobs">
                 <Jobs />
+              </Route>
+              <Route path="/authors">
+                <Authors />
               </Route>
             </Switch>
           </Content>
