@@ -82,8 +82,8 @@ const App: React.FC = () => {
                     </div>
       </Popup> 
       <Content>
-        <ClusterForm onSubmit={handleSubmit} onDelete={handleDelete} />
-        <ClusterTable clusters={clusters} />
+        <ClusterForm onSubmit={handleSubmit} />
+        <ClusterTable clusters={clusters} onDelete={handleDelete} />
       </Content>
     </ContentBlock>
   );
