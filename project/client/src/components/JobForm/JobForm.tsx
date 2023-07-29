@@ -113,7 +113,7 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
   return (
     <div>
 
-<Popup trigger= {<button className="btn btn-info helpbtn"> Help </button>} position="absolute" modal nested>
+<Popup trigger= {<button className="btn btn-info helpbtn"> Help </button>}  modal nested>
                 <div>
                   <h4>Geben Sie hier ihre Jobdaten ein. Folgende Parameter werden benötigt:</h4> <br></br>
                   <ul>
@@ -157,7 +157,7 @@ const JobForm: FC<JobFormProps> = ({ jobs, addJob, setScheduledJobs }) => {
         </div>
       </form>
       <br></br>
-      <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob} disabled={isLoading}>Add Job to Workload</button>
+      <button type="button" style={{marginRight: 20}} className="btn btn-light" onClick={handleAddJob} disabled={isLoading || disable}>Add Job to Workload</button>
       <button type="button" className="btn btn-primary" onClick={handleFormSubmit} disabled={isLoading || jobs.length === 0}>Schedule Workload</button>
       <ClipLoader loading={isLoading} size={50} />
       <br></br>
