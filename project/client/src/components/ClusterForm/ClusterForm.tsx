@@ -82,7 +82,7 @@ const ClusterForm: FC<ClusterFormProps> = ({ onSubmit }) => {
       <Input name="energyConsumption" placeholder="Energy Consumption" type="number" value={energyConsumption} onChange={(e) => setEnergyConsumption(e.target.value)} />
       <Input name="numServers" placeholder="Number of Servers" type="number" value={numServers} onChange={(e) => setNumServers(e.target.value)} />
       <Input name="numCores" placeholder="Number of Cores" type="number" value={numCores} onChange={(e) => setNumCores(e.target.value)} />
-      <Input name="numGBsRam" placeholder="Number of GBs of Ram" type="number" value={numTBsRam} onChange={(e) => setNumTBsRam(e.target.value)} />
+      <Input name="numGBsRam" placeholder="Number of TBs of Ram" type="number" value={numTBsRam} onChange={(e) => setNumTBsRam(e.target.value)} />
       <Select name="region" value={region} onChange={(e) => setRegion(e.target.value)}>
         <option value="" disabled hidden >Datacenter Region</option>
         <option value="East England">East England</option>
